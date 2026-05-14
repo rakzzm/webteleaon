@@ -26,7 +26,7 @@ export const legalPages: LegalPage[] = [
         title: "Who We Are",
         body: [
           `${companyName} is the operator of this website and Teleaon AI services. Our registered business address is ${companyAddress}.`,
-          "You can contact us at hello@teleaon.ai for privacy, data protection, or account-related questions."
+          "You can contact us at info@teleaon.ai for privacy, data protection, or account-related questions."
         ]
       },
       {
@@ -68,7 +68,7 @@ export const legalPages: LegalPage[] = [
         title: "Your Rights",
         body: [
           "Depending on applicable law, you may request access, correction, deletion, restriction, portability, objection, or withdrawal of consent for certain personal data processing.",
-          "To submit a request, contact hello@teleaon.ai with enough information for us to verify and respond to your request."
+          "To submit a request, contact info@teleaon.ai with enough information for us to verify and respond to your request."
         ]
       }
     ]
@@ -85,7 +85,7 @@ export const legalPages: LegalPage[] = [
         title: "Subscription Plans",
         body: [
           "Unless a separate written agreement states otherwise, paid subscription fees are billed in advance and are generally non-refundable once the billing period begins.",
-          "If you believe you were charged in error, contact hello@teleaon.ai within 7 days of the charge so our team can review the issue."
+          "If you believe you were charged in error, contact info@teleaon.ai within 7 days of the charge so our team can review the issue."
         ]
       },
       {
@@ -195,7 +195,7 @@ export const legalPages: LegalPage[] = [
       {
         title: "Preference Management",
         body: [
-          "You can unsubscribe from marketing emails using the unsubscribe link included in our communications or by contacting hello@teleaon.ai.",
+          "You can unsubscribe from marketing emails using the unsubscribe link included in our communications or by contacting info@teleaon.ai.",
           "Operational messages, security notices, account updates, billing communications, and service-related notifications may still be sent where necessary."
         ]
       },
@@ -210,7 +210,7 @@ export const legalPages: LegalPage[] = [
         title: "Sales Follow-Up",
         body: [
           "When you request a demo, pricing, technical consultation, or product information, Teleaon AI may contact you to understand your requirements and recommend suitable next steps.",
-          "You can ask us to stop sales follow-up at any time by contacting hello@teleaon.ai."
+          "You can ask us to stop sales follow-up at any time by contacting info@teleaon.ai."
         ]
       },
       {

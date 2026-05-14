@@ -19,7 +19,7 @@ export default function ContactPage() {
             <div className="space-y-4 text-sm text-slate-300">
               <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="font-semibold text-white">Company email</div>
-                <div className="mt-1">hello@teleaon.ai</div>
+                <div className="mt-1">info@teleaon.ai</div>
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="font-semibold text-white">Phone</div>

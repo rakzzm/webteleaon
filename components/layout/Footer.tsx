@@ -46,7 +46,7 @@ export function Footer() {
                 <Link key={link.href} href={link.href} className="hover:text-cyan">{link.title}</Link>
               ))}
               <Link href="/use-case" className="hover:text-cyan">Use Cases</Link>
-              <span>hello@teleaon.ai</span>
+              <span>info@teleaon.ai</span>
               <span>+1 (555) 019-2048</span>
               <span className="max-w-md leading-6">
                 TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.
