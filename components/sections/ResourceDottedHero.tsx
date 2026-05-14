@@ -1,6 +1,5 @@
 import { ArrowRight, BookOpen, FileText, Layers3, PlayCircle, Search } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { DottedSurface } from "@/components/sections/DottedSurface";
 
 const resourceSignals = [
   { label: "Architecture", value: "AI agent blueprints" },
@@ -18,7 +17,6 @@ const resourceTypes = [
 export function ResourceDottedHero() {
   return (
     <section className="relative isolate overflow-hidden bg-[#050915]">
-      <DottedSurface className="opacity-80" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_24%_24%,rgba(34,211,238,0.35),transparent_28%),radial-gradient(circle_at_78%_22%,rgba(224,0,131,0.28),transparent_30%),linear-gradient(135deg,rgba(5,9,21,0.94),rgba(12,28,54,0.82)_48%,rgba(36,10,50,0.9))]" />
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:44px_44px]" />
       <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#050915] to-transparent" />
