@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { BarChart3, Bot, BrainCircuit, CheckCircle2, CloudCog, Cpu, DatabaseZap, FileSearch, Gauge, GitBranch, HardDrive, LockKeyhole, MessageSquareText, MonitorDot, Network, PlugZap, Rocket, ServerCog, ShieldCheck, Sparkles, Workflow, Zap } from "lucide-react";
+import { BarChart3, Bot, BrainCircuit, CheckCircle2, CloudCog, Cpu, DatabaseZap, FileSearch, FileText, Gauge, GitBranch, LockKeyhole, MessageSquareText, MonitorDot, Network, PlugZap, ServerCog, ShieldCheck, Sparkles, Workflow, Zap } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { AIInfrastructureScrollHero } from "@/components/sections/AIInfrastructureScrollHero";
 import { CTASection } from "@/components/sections/CTASection";
+import { AIPlatformLampHero } from "@/components/sections/AIPlatformLampHero";
 import { FAQSection } from "@/components/sections/FAQSection";
+import { GenAIFlowTrailHero } from "@/components/sections/GenAIFlowTrailHero";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { productCards } from "@/data/site";
 
@@ -36,6 +39,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
+  if (slug === "ai-platform") {
+    return {
+      title: "AI Platform | Build, Manage, and Govern AI Agents",
+      description: "Teleaon AI Platform gives teams an end-to-end control plane for agent builder, model orchestration, data connectors, memory, tools, guardrails, monitoring, workflow automation, and governance."
+    };
+  }
+
+  if (slug === "gen-ai") {
+    return {
+      title: "Gen AI | Enterprise Generative AI, RAG, and Copilots",
+      description: "Teleaon Gen AI delivers enterprise RAG, document intelligence, multimodal assistants, knowledge copilots, secure LLM deployment, and governed content automation."
+    };
+  }
+
   return {
     title: `${product.title} | Rebuild in Progress`,
     description: `${product.title} is being rebuilt with updated Teleaon AI product content.`
@@ -54,6 +71,14 @@ export default async function ProductRebuildPage({ params }: Props) {
 
   if (slug === "ai-infrastructure") {
     return <AIInfrastructurePage />;
+  }
+
+  if (slug === "ai-platform") {
+    return <AIPlatformPage />;
+  }
+
+  if (slug === "gen-ai") {
+    return <GenAIPage />;
   }
 
   return (
@@ -287,6 +312,218 @@ const infrastructureFaqs = [
   }
 ];
 
+const platformOutcomes = [
+  ["10x", "faster agent rollout with reusable orchestration"],
+  ["360°", "visibility across tools, models, memory, and workflows"],
+  ["24/7", "agent operations with monitoring and human handoff"],
+  ["100%", "auditable agent decisions and tool calls"]
+];
+
+const platformCapabilities = [
+  {
+    title: "Agent builder",
+    description: "Design role-specific agents with instructions, memory, tools, escalation paths, approval rules, test data, and channel-specific behavior.",
+    icon: Bot
+  },
+  {
+    title: "Model orchestration",
+    description: "Route tasks across LLMs, embedding models, speech models, vision models, and private endpoints with fallback, cost, latency, and quality controls.",
+    icon: BrainCircuit
+  },
+  {
+    title: "Data connectors",
+    description: "Connect agents to CRM, helpdesk, documents, data warehouses, knowledge bases, collaboration tools, databases, and internal APIs.",
+    icon: PlugZap
+  },
+  {
+    title: "Memory and context",
+    description: "Manage short-term task context, long-term customer memory, retrieval indexes, source citations, and permission-aware knowledge access.",
+    icon: DatabaseZap
+  },
+  {
+    title: "Guardrails and approvals",
+    description: "Apply policies, tool restrictions, safety checks, human review, PII handling, escalation logic, and audit trails before agents act.",
+    icon: ShieldCheck
+  },
+  {
+    title: "Monitoring and governance",
+    description: "Track conversations, tool calls, cost, latency, success rate, failure reasons, evaluations, drift, and production business outcomes.",
+    icon: MonitorDot
+  }
+];
+
+const platformModules = [
+  ["Agent Studio", "A design workspace for prompts, tasks, tools, role policies, memory, test conversations, and production release preparation."],
+  ["Model Router", "A policy-driven orchestration layer for selecting models by task type, cost, latency, region, risk, and fallback requirement."],
+  ["Connector Hub", "Secure integrations for enterprise systems, APIs, databases, file stores, collaboration tools, support platforms, and CRMs."],
+  ["Workflow Engine", "Multi-step automation for approvals, tickets, CRM updates, data enrichment, calendar booking, handoffs, and notifications."],
+  ["Evaluation Lab", "Test suites, simulation runs, benchmark datasets, regression checks, red-team scenarios, and quality scorecards."],
+  ["Governance Console", "Central controls for access, environments, policies, audit logs, deployment history, analytics, and compliance evidence."]
+];
+
+const platformWorkflows = [
+  {
+    title: "Build a production support agent",
+    steps: ["Define role", "Connect knowledge", "Add tools", "Set handoff rules", "Run evaluations", "Deploy to channels"]
+  },
+  {
+    title: "Automate a sales workflow",
+    steps: ["Capture lead", "Qualify intent", "Enrich account", "Book meeting", "Update CRM", "Notify owner"]
+  },
+  {
+    title: "Govern a model change",
+    steps: ["Create version", "Run tests", "Review policy", "Canary release", "Monitor traces", "Promote or rollback"]
+  },
+  {
+    title: "Coordinate multiple agents",
+    steps: ["Route request", "Assign specialist", "Share memory", "Execute tools", "Escalate exception", "Summarize outcome"]
+  }
+];
+
+const platformSecurity = [
+  "Role-based access controls across builders, reviewers, admins, and business users",
+  "Environment separation for sandbox, staging, pilot, and production agents",
+  "Approval gates for sensitive tool calls, external messages, customer records, and high-impact actions",
+  "Conversation, model, memory, retrieval, workflow, and tool-call audit trails",
+  "Evaluation and regression testing before prompt, tool, policy, or model changes are released",
+  "Configurable retention, redaction, and data access policies for enterprise governance"
+];
+
+const platformIntegrations = ["Salesforce", "HubSpot", "Zendesk", "ServiceNow", "Microsoft 365", "Google Workspace", "Slack", "Teams", "SharePoint", "Confluence", "Postgres", "Snowflake", "Databricks", "OpenAI", "Anthropic", "Hugging Face", "Twilio", "WhatsApp", "GitHub", "Custom APIs"];
+
+const platformFaqs = [
+  {
+    question: "What is Teleaon AI Platform?",
+    answer: "Teleaon AI Platform is an end-to-end operating layer for building, deploying, monitoring, and governing AI agents across enterprise tools, data, models, channels, and workflows."
+  },
+  {
+    question: "How is this different from AI SaaS?",
+    answer: "AI SaaS provides ready-to-use applications for business teams. AI Platform gives technical and operations teams the control plane to design custom agents, orchestrate models, connect tools, govern behavior, and scale agent systems."
+  },
+  {
+    question: "Can business and technical teams collaborate in the platform?",
+    answer: "Yes. Business teams can define workflows and review outcomes, while technical teams manage tools, models, integrations, evaluations, security, and deployment controls."
+  },
+  {
+    question: "Does it support multiple agents working together?",
+    answer: "Yes. The platform supports specialist agents, routing logic, shared memory, workflow coordination, human handoff, and orchestration across tools and channels."
+  },
+  {
+    question: "How do we monitor agents in production?",
+    answer: "Teams can monitor traces, latency, cost, tool calls, escalation rates, errors, response quality, user feedback, evaluations, and business outcomes from the governance console."
+  },
+  {
+    question: "Can we integrate our own tools and APIs?",
+    answer: "Yes. The connector hub and workflow engine are designed for standard SaaS tools, databases, internal APIs, custom business systems, and secure enterprise deployment patterns."
+  }
+];
+
+const genAIOutcomes = [
+  ["70%+", "target document processing automation"],
+  ["<2 weeks", "to deploy first governed knowledge assistant"],
+  ["Multimodal", "text, document, image, voice, and video workflows"],
+  ["100%", "citation and audit coverage for sensitive answers"]
+];
+
+const genAICapabilities = [
+  {
+    title: "Enterprise RAG",
+    description: "Build retrieval-augmented generation over documents, websites, wikis, tickets, contracts, policies, and structured data with citations and permissions.",
+    icon: FileSearch
+  },
+  {
+    title: "Enterprise search",
+    description: "Give employees and customers precise answers across fragmented knowledge systems with freshness checks, source ranking, and role-aware access.",
+    icon: DatabaseZap
+  },
+  {
+    title: "Document intelligence",
+    description: "Extract fields, summarize files, compare versions, classify content, route approvals, and transform PDFs, forms, images, and spreadsheets into workflows.",
+    icon: FileText
+  },
+  {
+    title: "AI copilots",
+    description: "Create copilots for support, sales, legal, HR, finance, operations, engineering, and leadership teams with secure tool access and memory.",
+    icon: Bot
+  },
+  {
+    title: "Content generation",
+    description: "Generate compliant emails, briefs, proposals, knowledge articles, campaign copy, product descriptions, and executive summaries with brand controls.",
+    icon: Sparkles
+  },
+  {
+    title: "Secure LLM deployment",
+    description: "Route prompts through approved models, enforce policies, log requests, evaluate responses, protect sensitive data, and review production behavior.",
+    icon: ShieldCheck
+  }
+];
+
+const genAIModules = [
+  ["Knowledge Graph Studio", "Connect sources, map entities, organize metadata, manage freshness, and expose reliable knowledge to copilots and search experiences."],
+  ["RAG Orchestrator", "Configure chunking, embeddings, hybrid search, reranking, prompt templates, context windows, citations, and retrieval quality checks."],
+  ["Document AI Pipeline", "Process files, extract fields, classify document types, validate confidence, trigger workflows, and hand exceptions to reviewers."],
+  ["Copilot Builder", "Design role-specific assistants with memory, tools, tone controls, approval gates, and workflow execution for each department."],
+  ["Model Governance Layer", "Route to approved LLMs, run evaluations, compare outputs, manage prompt versions, redact sensitive data, and monitor usage."],
+  ["Content Operations Console", "Create, review, localize, approve, publish, and measure generated content across customer and internal channels."]
+];
+
+const genAIWorkflows = [
+  {
+    title: "Knowledge assistant for employees",
+    steps: ["Ask question", "Verify user role", "Retrieve sources", "Generate answer", "Show citations", "Suggest next action"]
+  },
+  {
+    title: "Document intake automation",
+    steps: ["Upload file", "Classify type", "Extract fields", "Validate confidence", "Route exception", "Update system"]
+  },
+  {
+    title: "Customer-facing product copilot",
+    steps: ["Understand need", "Search product data", "Compare options", "Generate answer", "Capture lead", "Escalate sales"]
+  },
+  {
+    title: "Governed content production",
+    steps: ["Create brief", "Generate draft", "Apply brand rules", "Review compliance", "Approve content", "Measure performance"]
+  }
+];
+
+const genAISecurity = [
+  "Source-level permission checks before retrieval and answer generation",
+  "Citation-backed responses with visible source references and confidence signals",
+  "Prompt, model, and policy versioning for production change control",
+  "PII redaction, sensitive-topic routing, and retention controls for generated content",
+  "Human review queues for low-confidence extraction, legal content, and customer-facing publication",
+  "Evaluation harnesses for hallucination risk, retrieval quality, tone, policy adherence, and answer completeness"
+];
+
+const genAIIntegrations = ["SharePoint", "Google Drive", "Confluence", "Notion", "Zendesk", "ServiceNow", "Salesforce", "HubSpot", "Snowflake", "Databricks", "Postgres", "S3", "Azure Blob", "OpenAI", "Anthropic", "Hugging Face", "Pinecone", "pgvector", "Slack", "Teams"];
+
+const genAIFaqs = [
+  {
+    question: "What does Teleaon Gen AI help us build?",
+    answer: "It helps teams build governed generative AI experiences such as enterprise search, RAG assistants, document intelligence workflows, department copilots, content automation, and secure LLM-powered applications."
+  },
+  {
+    question: "How does it reduce hallucination risk?",
+    answer: "Teleaon Gen AI combines retrieval controls, source permissions, citations, response policies, evaluation checks, prompt versioning, and review workflows so sensitive answers are grounded and auditable."
+  },
+  {
+    question: "Can it use our existing files and knowledge bases?",
+    answer: "Yes. It is designed to connect to document repositories, wikis, ticketing systems, CRM records, data platforms, websites, and APIs while respecting source permissions and freshness rules."
+  },
+  {
+    question: "Does it support document intelligence?",
+    answer: "Yes. Teams can classify documents, extract fields, summarize files, compare versions, route exceptions, trigger approvals, and update downstream systems from PDFs, forms, spreadsheets, images, and contracts."
+  },
+  {
+    question: "Can we choose which LLMs are used?",
+    answer: "Yes. The architecture supports approved model routing across commercial APIs, private endpoints, and open-source models, with logs, usage visibility, and governance policies around each model path."
+  },
+  {
+    question: "How do we start safely?",
+    answer: "Most teams start with one high-value knowledge or document workflow, define source permissions and success metrics, run evaluations with real examples, then expand to more copilots and channels."
+  }
+];
+
 function AISaaSPage() {
   return (
     <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
@@ -490,7 +727,7 @@ function AIInfrastructurePage() {
               ))}
             </div>
           </div>
-          <InfrastructureVisual />
+          <AIInfrastructureScrollHero />
         </div>
       </section>
 
@@ -629,6 +866,348 @@ function AIInfrastructurePage() {
   );
 }
 
+function AIPlatformPage() {
+  return (
+    <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
+      <section className="relative isolate border-b border-slate-200">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_74%_12%,rgba(40,199,232,0.28),transparent_32%),radial-gradient(circle_at_16%_28%,rgba(224,0,131,0.18),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#f5f0ff_100%)]" />
+        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+          <div>
+            <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
+              AI Platform control plane
+            </div>
+            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.55rem] lg:leading-[0.98]">
+              Build, manage, and govern AI agents at enterprise scale
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+              Design agentic systems with model orchestration, data connectors, memory, tools, guardrails, workflow automation, monitoring, and governance in one production-ready platform.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact-us">Book Platform Demo</Button>
+              <Button href="#platform-capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
+                Explore Platform
+              </Button>
+            </div>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {platformOutcomes.map(([value, label]) => (
+                <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="text-2xl font-semibold text-slate-950">{value}</div>
+                  <div className="mt-1 text-xs leading-5 text-slate-600">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <AIPlatformLampHero />
+        </div>
+      </section>
+
+      <LightSection
+        eyebrow="Problem Statement"
+        title="Agent pilots need a control plane before they become production systems"
+        description="Enterprise teams can prototype agents quickly, but scaling them safely requires orchestration, connectors, memory, tools, approval gates, evaluation, monitoring, and governance built into the operating model."
+      >
+        <div className="grid gap-5 lg:grid-cols-3">
+          {[
+            ["Agents are hard to operate", "Prompts, tools, models, memory, and data access become difficult to manage when every team builds agents differently."],
+            ["Actions need controls", "AI agents must know when to answer, when to act, when to ask for approval, and when to hand off to a human with full context."],
+            ["Production needs evidence", "Leaders need traces, evaluations, version history, monitoring, cost visibility, and measurable outcomes before scaling agent programs."]
+          ].map(([title, description]) => (
+            <InfoCard key={title} title={title} description={description} />
+          ))}
+        </div>
+      </LightSection>
+
+      <LightSection
+        id="platform-capabilities"
+        eyebrow="Key Capabilities"
+        title="Everything required to build and operate enterprise AI agents"
+        description="Teleaon AI Platform combines agent design, model orchestration, enterprise data access, workflow execution, monitoring, and governance into one platform for agentic AI."
+      >
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {platformCapabilities.map(({ title, description, icon: Icon }) => (
+            <div key={title} className="rounded-3xl border border-slate-200 bg-white/78 p-6 shadow-sm backdrop-blur-xl">
+              <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-cyan/12 text-cyan">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <section className="relative isolate overflow-hidden border-y border-slate-200 bg-slate-950 py-16 text-white lg:py-24">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.24),transparent_28%),radial-gradient(circle_at_84%_72%,rgba(224,0,131,0.18),transparent_32%)]" />
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.76fr_1.24fr] lg:px-8">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan">Platform Modules</div>
+            <h2 className="mt-4 text-balance text-4xl font-semibold sm:text-5xl">A modular operating system for agentic AI</h2>
+            <p className="mt-5 text-base leading-8 text-slate-300">Deploy a single agent workflow or coordinate multi-agent systems across teams, channels, tools, approvals, and production environments.</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {platformModules.map(([title, description]) => (
+              <div key={title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-cyan" />
+                  <h3 className="font-semibold text-white">{title}</h3>
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-350">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <LightSection
+        eyebrow="Example Workflows"
+        title="From agent design to governed production release"
+        description="The platform supports the full lifecycle: build agents, connect systems, evaluate behavior, release safely, monitor outcomes, and improve over time."
+      >
+        <div className="grid gap-5 lg:grid-cols-2">
+          {platformWorkflows.map((workflow) => (
+            <div key={workflow.title} className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-950">{workflow.title}</h3>
+              <div className="mt-5 grid gap-3">
+                {workflow.steps.map((step, index) => (
+                  <div key={step} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-cyan text-sm font-semibold text-ink">{index + 1}</span>
+                    <span className="text-sm font-medium text-slate-700">{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <LightSection
+        eyebrow="Enterprise Security"
+        title="Govern agent behavior, tool access, and operational risk"
+        description="Teleaon AI Platform gives AI, IT, security, and business leaders the controls needed to scale agents without losing visibility or accountability."
+      >
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-3xl border border-slate-200 bg-white/80 p-7 shadow-sm">
+            <LockKeyhole className="h-10 w-10 text-cyan" />
+            <h3 className="mt-5 text-2xl font-semibold text-slate-950">Governed agent operations</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-600">Define what agents can know, which tools they can use, when approval is required, how releases are tested, and how every action is reviewed.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {platformSecurity.map((item) => (
+              <div key={item} className="flex gap-3 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm">
+                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-cyan" />
+                <p className="text-sm leading-6 text-slate-650">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </LightSection>
+
+      <LightSection
+        eyebrow="Integrations"
+        title="Connect agents to the tools, data, and channels that run your business"
+        description="Agents become useful when they can understand context, take approved action, and update the systems where teams already work."
+      >
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {platformIntegrations.map((integration) => (
+            <div key={integration} className="rounded-2xl border border-slate-200 bg-white/75 p-4 text-sm font-semibold text-slate-700 shadow-sm">
+              {integration}
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <section className="bg-slate-950 py-16 lg:py-24">
+        <Section>
+          <SectionHeading title="AI Platform FAQ" description="Answers for teams evaluating enterprise agent builders, model orchestration, workflow automation, monitoring, and governance." />
+          <FAQSection items={platformFaqs} />
+        </Section>
+      </section>
+
+      <section className="bg-[linear-gradient(135deg,#ffffff_0%,#effcff_48%,#f5f0ff_100%)] py-16 lg:py-24">
+        <Section>
+          <CTASection
+            title="Ready to build governed AI agents on one platform?"
+            description="Book a platform demo to map your first agent systems, integrations, approval rules, evaluation plan, and production rollout path."
+            secondaryHref="/products"
+          />
+        </Section>
+      </section>
+    </main>
+  );
+}
+
+function GenAIPage() {
+  return (
+    <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
+      <section className="relative isolate border-b border-slate-200">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_14%,rgba(224,0,131,0.22),transparent_30%),radial-gradient(circle_at_18%_28%,rgba(40,199,232,0.24),transparent_32%),linear-gradient(135deg,#ffffff_0%,#effcff_45%,#fff1fb_100%)]" />
+        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+          <div>
+            <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
+              Enterprise generative AI
+            </div>
+            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.55rem] lg:leading-[0.98]">
+              Governed Gen AI for knowledge, documents, and copilots
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+              Build secure generative AI systems that search enterprise knowledge, understand documents, generate trusted content, and power role-specific copilots with citations, controls, and measurable outcomes.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button href="/contact-us">Book Gen AI Workshop</Button>
+              <Button href="#gen-ai-capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
+                Explore Gen AI
+              </Button>
+            </div>
+            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+              {genAIOutcomes.map(([value, label]) => (
+                <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
+                  <div className="text-2xl font-semibold text-slate-950">{value}</div>
+                  <div className="mt-1 text-xs leading-5 text-slate-600">{label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+          <GenAIVisual />
+        </div>
+      </section>
+
+      <LightSection
+        eyebrow="Problem Statement"
+        title="Generative AI needs trusted context, not isolated prompts"
+        description="Enterprise teams need more than a public chat interface. They need reliable retrieval, governed knowledge access, document understanding, model controls, evaluation, and workflows that turn generated answers into approved action."
+      >
+        <div className="grid gap-5 lg:grid-cols-3">
+          {[
+            ["Knowledge is fragmented", "Critical answers live across documents, tickets, CRM notes, policies, wikis, data warehouses, and inboxes with different owners and permissions."],
+            ["Outputs need governance", "Business users need speed, while legal, security, and AI leaders need citations, review gates, audit trails, and policy-aligned responses."],
+            ["Pilots rarely scale", "Without retrieval quality, model routing, prompt versioning, evaluations, and measurable workflows, Gen AI experiments remain disconnected demos."]
+          ].map(([title, description]) => (
+            <InfoCard key={title} title={title} description={description} />
+          ))}
+        </div>
+      </LightSection>
+
+      <LightSection
+        id="gen-ai-capabilities"
+        eyebrow="Key Capabilities"
+        title="A complete Gen AI layer for enterprise use cases"
+        description="Teleaon Gen AI combines RAG, enterprise search, document intelligence, copilots, content generation, multimodal AI, and secure model operations in one governed product motion."
+      >
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {genAICapabilities.map(({ title, description, icon: Icon }) => (
+            <div key={title} className="rounded-3xl border border-slate-200 bg-white/78 p-6 shadow-sm backdrop-blur-xl">
+              <div className="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-cyan/12 text-cyan">
+                <Icon className="h-6 w-6" />
+              </div>
+              <h3 className="text-xl font-semibold text-slate-950">{title}</h3>
+              <p className="mt-3 text-sm leading-7 text-slate-600">{description}</p>
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <section className="relative isolate overflow-hidden border-y border-slate-200 bg-slate-950 py-16 text-white lg:py-24">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(40,199,232,0.24),transparent_28%),radial-gradient(circle_at_86%_72%,rgba(224,0,131,0.24),transparent_32%)]" />
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 sm:px-6 lg:grid-cols-[0.76fr_1.24fr] lg:px-8">
+          <div>
+            <div className="text-sm font-semibold uppercase tracking-[0.24em] text-cyan">Gen AI Modules</div>
+            <h2 className="mt-4 text-balance text-4xl font-semibold sm:text-5xl">From knowledge ingestion to governed generation</h2>
+            <p className="mt-5 text-base leading-8 text-slate-300">Use individual modules for focused use cases or combine them into a full generative AI operating model for employees, customers, and content teams.</p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {genAIModules.map(([title, description]) => (
+              <div key={title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 shadow-sm">
+                <div className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-cyan" />
+                  <h3 className="font-semibold text-white">{title}</h3>
+                </div>
+                <p className="mt-3 text-sm leading-7 text-slate-350">{description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <LightSection
+        eyebrow="Example Workflows"
+        title="Gen AI workflows that move from answer to outcome"
+        description="Teleaon Gen AI is built for practical enterprise work: grounded answers, structured extraction, customer assistance, content operations, and approved downstream actions."
+      >
+        <div className="grid gap-5 lg:grid-cols-2">
+          {genAIWorkflows.map((workflow) => (
+            <div key={workflow.title} className="rounded-3xl border border-slate-200 bg-white/80 p-6 shadow-sm">
+              <h3 className="text-xl font-semibold text-slate-950">{workflow.title}</h3>
+              <div className="mt-5 grid gap-3">
+                {workflow.steps.map((step, index) => (
+                  <div key={step} className="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50/70 p-3">
+                    <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-cyan text-sm font-semibold text-ink">{index + 1}</span>
+                    <span className="text-sm font-medium text-slate-700">{step}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <LightSection
+        eyebrow="Enterprise Security"
+        title="Govern answers, documents, models, and content before scaling"
+        description="Teleaon Gen AI lets teams move quickly while preserving source permissions, auditability, policy controls, response quality, and human review where the risk is higher."
+      >
+        <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <div className="rounded-3xl border border-slate-200 bg-white/80 p-7 shadow-sm">
+            <LockKeyhole className="h-10 w-10 text-cyan" />
+            <h3 className="mt-5 text-2xl font-semibold text-slate-950">Trusted generation architecture</h3>
+            <p className="mt-4 text-sm leading-7 text-slate-600">Control which sources are retrieved, which model paths are approved, what content needs review, and how every generated answer can be traced back to context.</p>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {genAISecurity.map((item) => (
+              <div key={item} className="flex gap-3 rounded-2xl border border-slate-200 bg-white/70 p-4 shadow-sm">
+                <ShieldCheck className="mt-0.5 h-5 w-5 shrink-0 text-cyan" />
+                <p className="text-sm leading-6 text-slate-650">{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </LightSection>
+
+      <LightSection
+        eyebrow="Integrations"
+        title="Connect Gen AI to enterprise knowledge, data, and collaboration systems"
+        description="The strongest Gen AI experiences use the data your organization already trusts, with connectors and APIs that keep permissions, context, and workflow ownership intact."
+      >
+        <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+          {genAIIntegrations.map((integration) => (
+            <div key={integration} className="rounded-2xl border border-slate-200 bg-white/75 p-4 text-sm font-semibold text-slate-700 shadow-sm">
+              {integration}
+            </div>
+          ))}
+        </div>
+      </LightSection>
+
+      <section className="bg-slate-950 py-16 lg:py-24">
+        <Section>
+          <SectionHeading title="Gen AI FAQ" description="Answers for teams evaluating enterprise RAG, document intelligence, copilots, secure LLM deployment, and content automation." />
+          <FAQSection items={genAIFaqs} />
+        </Section>
+      </section>
+
+      <section className="bg-[linear-gradient(135deg,#ffffff_0%,#effcff_48%,#fff1fb_100%)] py-16 lg:py-24">
+        <Section>
+          <CTASection
+            title="Ready to build governed Gen AI for your enterprise?"
+            description="Book a Gen AI workshop to map knowledge sources, select high-value workflows, define governance controls, and design your first production assistant."
+            secondaryHref="/products"
+          />
+        </Section>
+      </section>
+    </main>
+  );
+}
+
 function AISaaSVisual() {
   return (
     <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-[0_40px_120px_rgba(14,116,144,0.16)] backdrop-blur-xl">
@@ -673,44 +1252,58 @@ function AISaaSVisual() {
   );
 }
 
-function InfrastructureVisual() {
+function GenAIVisual() {
+  const contentSignals = ["RAG", "Search", "Docs", "Citations", "Copilots", "LLM"];
+
   return (
-    <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-[0_40px_120px_rgba(14,116,144,0.16)] backdrop-blur-xl">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.18),transparent_30%),radial-gradient(circle_at_78%_62%,rgba(59,130,246,0.18),transparent_34%)]" />
+    <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950 p-5 shadow-[0_40px_120px_rgba(14,116,144,0.18)]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.18),transparent_30%),radial-gradient(circle_at_78%_62%,rgba(224,0,131,0.22),transparent_34%)]" />
+      <GenAIFlowTrailHero />
+      <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:38px_38px]" />
+
       <div className="relative grid gap-4">
-        <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl">
-          <div className="flex items-center justify-between">
+        <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-5 text-white shadow-2xl backdrop-blur-xl">
+          <div className="flex items-center justify-between gap-4">
             <div>
-              <div className="text-xs uppercase tracking-[0.22em] text-cyan">AI Infrastructure Control Plane</div>
-              <div className="mt-2 text-2xl font-semibold">Production workload routing</div>
+              <div className="text-xs uppercase tracking-[0.22em] text-cyan">Gen AI Intelligence Layer</div>
+              <div className="mt-2 text-2xl font-semibold">Grounded answer generated</div>
             </div>
-            <div className="rounded-full bg-cyan px-3 py-1 text-xs font-semibold text-ink">Healthy</div>
+            <div className="rounded-full bg-cyan px-3 py-1 text-xs font-semibold text-ink">Cited</div>
           </div>
           <div className="mt-5 grid gap-3 sm:grid-cols-3">
             {[
-              ["GPU pool", "72% utilized"],
-              ["P95 latency", "186ms"],
-              ["Active models", "18 endpoints"]
+              ["Sources", "14 retrieved"],
+              ["Confidence", "94%"],
+              ["Policy", "Approved"]
             ].map(([label, value]) => (
-              <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3">
+              <div key={label} className="rounded-2xl border border-white/10 bg-black/20 p-3">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-slate-400">{label}</div>
                 <div className="mt-2 text-sm font-semibold">{value}</div>
               </div>
             ))}
           </div>
         </div>
+
         <div className="grid gap-4 sm:grid-cols-2">
-          <VisualTile icon={<Cpu />} title="GPU Orchestration" body="Schedules inference, embeddings, and batch jobs across scalable compute pools." />
-          <VisualTile icon={<HardDrive />} title="Vector Layer" body="Manages indexes, metadata filters, memory stores, and retrieval freshness." />
-          <VisualTile icon={<Rocket />} title="Release Pipeline" body="Promotes model, prompt, and policy changes through governed environments." />
-          <VisualTile icon={<MonitorDot />} title="Observability" body="Traces requests, latency, cost, errors, retrieval quality, and tool activity." />
+          <VisualTile icon={<FileSearch />} title="Retrieval" body="Finds source-backed context across documents, wikis, tickets, and data systems." />
+          <VisualTile icon={<BrainCircuit />} title="Generation" body="Creates concise answers, summaries, drafts, and recommendations with policy controls." />
+          <VisualTile icon={<ShieldCheck />} title="Governance" body="Applies permissions, citations, redaction, evaluation, and review gates." />
+          <VisualTile icon={<Workflow />} title="Workflow" body="Turns generated output into approvals, CRM updates, tickets, briefs, and next actions." />
         </div>
-        <div className="rounded-3xl border border-slate-200 bg-white/85 p-5 shadow-sm">
-          <div className="flex items-center gap-3">
-            <ServerCog className="h-6 w-6 text-cyan" />
-            <div className="font-semibold text-slate-950">Secure runtime policy</div>
+
+        <div className="rounded-3xl border border-white/10 bg-white/90 p-5 shadow-sm">
+          <div className="flex flex-wrap gap-2">
+            {contentSignals.map((signal) => (
+              <span key={signal} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
+                {signal}
+              </span>
+            ))}
           </div>
-          <p className="mt-3 text-sm leading-7 text-slate-600">Route sensitive workloads through private endpoints, enforce tenant policies, monitor every request, and keep deployment history ready for operational review.</p>
+          <div className="mt-5 flex items-center gap-3">
+            <Sparkles className="h-6 w-6 text-cyan" />
+            <div className="font-semibold text-slate-950">Trusted enterprise output</div>
+          </div>
+          <p className="mt-3 text-sm leading-7 text-slate-600">“The policy allows premium customers to request priority onboarding. I found the latest source, generated the response, and attached two citations for review.”</p>
         </div>
       </div>
     </div>
