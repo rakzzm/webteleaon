@@ -6,10 +6,12 @@ import { Hero } from "@/components/sections/Hero";
 import { HeroVideoBot } from "@/components/sections/HeroVideoBot";
 import { ProductProductionShowcase } from "@/components/sections/ProductProductionShowcase";
 import { Resource3DShowcase } from "@/components/sections/Resource3DShowcase";
+import { ResourceAnimatedSection } from "@/components/sections/ResourceAnimatedSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import type { PageContent } from "@/data/site";
+import type { ReactNode } from "react";
 
 function listToFeatures(items: string[]) {
   return items.map((item) => {
@@ -19,6 +21,34 @@ function listToFeatures(items: string[]) {
       description: rest.length ? `Designed for ${rest.join(" for ")}.` : "Built as an enterprise-ready capability with measurable operational value."
     };
   });
+}
+
+function TemplateSection({
+  children,
+  id,
+  className,
+  isResource,
+  resourceVariant = "interactive-light"
+}: {
+  children: ReactNode;
+  id?: string;
+  className?: string;
+  isResource: boolean;
+  resourceVariant?: "liquid" | "interactive-light" | "interactive-dark";
+}) {
+  if (isResource) {
+    return (
+      <ResourceAnimatedSection id={id} className={className} variant={resourceVariant}>
+        {children}
+      </ResourceAnimatedSection>
+    );
+  }
+
+  return (
+    <Section id={id} className={className}>
+      {children}
+    </Section>
+  );
 }
 
 export function PageTemplate({ page, category }: { page: PageContent; category: "product" | "solution" | "use-case" | "resource" | "company" }) {
@@ -46,7 +76,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
 
       {isResource ? <Resource3DShowcase page={page} /> : null}
 
-      <Section>
+      <TemplateSection isResource={isResource} resourceVariant="interactive-dark">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-7">
             <h2 className="text-2xl font-semibold text-white">{isProduct ? "Problem Statement" : isSolution ? "Challenges" : isResource ? "Resource Focus" : isCompany ? "Company Focus" : "What it does"}</h2>
@@ -57,15 +87,15 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
             <p className="mt-4 text-base leading-8 text-slate-200">{page.positioning}</p>
           </div>
         </div>
-      </Section>
+      </TemplateSection>
 
-      <Section className="pt-0" id={page.slug === "agent-video-bot" ? "how-it-works" : undefined}>
+      <TemplateSection className={isResource ? undefined : "pt-0"} id={page.slug === "agent-video-bot" ? "how-it-works" : undefined} isResource={isResource} resourceVariant="liquid">
         <SectionHeading
           title={isProduct ? "Key Capabilities" : isSolution ? "Recommended AI Capabilities" : isResource ? "What You Will Find" : isCompany ? "What This Page Covers" : "Key Capabilities"}
           description="Composable capabilities designed for real deployment, continuous improvement, and secure enterprise operations."
         />
         <FeatureGrid items={listToFeatures(page.capabilities)} />
-      </Section>
+      </TemplateSection>
 
       {page.modules ? (
         <Section className="pt-0">
@@ -87,7 +117,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </Section>
       ) : null}
 
-      <Section className="pt-0">
+      <TemplateSection className={isResource ? undefined : "pt-0"} isResource={isResource} resourceVariant="interactive-light">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <SectionHeading title={isResource ? "Reader Value" : isCompany ? "Why It Matters" : isSolution ? "Business Outcomes" : "Benefits"} description="The platform is designed around outcomes leaders can measure, govern, and communicate." />
@@ -110,9 +140,9 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
             </div>
           </div>
         </div>
-      </Section>
+      </TemplateSection>
 
-      <Section className="pt-0">
+      <TemplateSection className={isResource ? undefined : "pt-0"} isResource={isResource} resourceVariant="interactive-dark">
         <SectionHeading title={isProduct ? "Enterprise Security" : "Technical Architecture"} description="Security, observability, approvals, and auditability are designed into the operating model from the beginning." align="center" />
         <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 lg:p-8">
           <div className="grid gap-4 md:grid-cols-3">
@@ -124,7 +154,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
             ))}
           </div>
         </div>
-      </Section>
+      </TemplateSection>
 
       {page.integrations ? (
         <Section className="pt-0">
@@ -139,19 +169,19 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </Section>
       ) : null}
 
-      <Section className="pt-0">
+      <TemplateSection className={isResource ? undefined : "pt-0"} isResource={isResource} resourceVariant="interactive-light">
         <StatsSection />
-      </Section>
+      </TemplateSection>
 
-      <Section className="pt-0">
+      <TemplateSection className={isResource ? undefined : "pt-0"} isResource={isResource} resourceVariant="interactive-dark">
         <SectionHeading title="Customer Confidence" description="Enterprise buyers need proof that AI systems can create value without increasing operational risk." />
         <TestimonialSection />
-      </Section>
+      </TemplateSection>
 
-      <Section className="pt-0">
+      <TemplateSection className={isResource ? undefined : "pt-0"} isResource={isResource} resourceVariant="interactive-light">
         <SectionHeading title="FAQ" description="Common questions from technical evaluators, business sponsors, and governance teams." />
         <FAQSection items={page.faq} />
-      </Section>
+      </TemplateSection>
 
       <Section className="pt-0">
         <CTASection />

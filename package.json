@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@paper-design/shaders-react": "^0.0.76",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
