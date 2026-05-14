@@ -40,6 +40,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
           subheadline={page.subheadline}
           visual={page.visual}
           accentColor={page.accentColor}
+          hideVisual={isResource}
         />
       )}
 

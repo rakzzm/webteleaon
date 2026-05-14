@@ -47,7 +47,7 @@ export function Resource3DShowcase({ page }: { page: PageContent }) {
             Interactive resource hub for {page.title.toLowerCase()}
           </h2>
           <p className="mt-5 text-base leading-8 text-slate-300">
-            Each resource page now carries a different visual system, with animated knowledge panels, floating content nodes, and a 3D-style information core.
+            Each resource page now keeps practical guidance, implementation patterns, and enterprise-ready signals easy to scan.
           </p>
         </div>
 

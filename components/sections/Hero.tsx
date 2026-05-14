@@ -12,6 +12,7 @@ type HeroProps = {
   primaryLabel?: string;
   secondaryHref?: string;
   secondaryLabel?: string;
+  hideVisual?: boolean;
 };
 
 export function Hero({
@@ -23,7 +24,8 @@ export function Hero({
   primaryHref = "/contact-us",
   primaryLabel = "Book a Demo",
   secondaryHref = "/products",
-  secondaryLabel = "Explore Products"
+  secondaryLabel = "Explore Products",
+  hideVisual = false
 }: HeroProps) {
   const theme = getHeroTheme(visual, accentColor ?? "#28c7e8");
 
@@ -50,7 +52,9 @@ export function Hero({
         style={{ background: `linear-gradient(to top, ${theme.bottom}, transparent)` }}
       />
       <div className="relative mx-auto flex min-h-[calc(100vh-8.25rem)] max-w-7xl flex-col items-center px-5 pb-12 pt-24 text-center sm:px-6 lg:px-8">
-        <AIHeroVisual type={visual} title={title} accentColor={accentColor ?? "#28c7e8"} modelVariant={title} className="mb-10 w-full max-w-6xl" />
+        {hideVisual ? null : (
+          <AIHeroVisual type={visual} title={title} accentColor={accentColor ?? "#28c7e8"} modelVariant={title} className="mb-10 w-full max-w-6xl" />
+        )}
         <div className="max-w-6xl">
           <h1 className="text-balance text-5xl font-light tracking-normal text-white sm:text-7xl lg:text-[4.3rem] lg:leading-[1.08]">
             {renderHeadline(headline)}
