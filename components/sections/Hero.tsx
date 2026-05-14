@@ -147,6 +147,36 @@ function getHeroTheme(visual: VisualVariant, accentColor: string) {
       to: "#2a1803",
       grid: "rgba(224,0,131,0.13)",
       bottom: "#1f0616"
+    },
+    library: {
+      primary: "#38bdf8",
+      secondary: "#f472b6",
+      tertiary: "#a3e635",
+      from: "#06131f",
+      mid: "#102a42",
+      to: "#211022",
+      grid: "rgba(56,189,248,0.12)",
+      bottom: "#06131f"
+    },
+    enterprise: {
+      primary: "#64748b",
+      secondary: "#22d3ee",
+      tertiary: "#f59e0b",
+      from: "#0b1120",
+      mid: "#1e293b",
+      to: "#172554",
+      grid: "rgba(148,163,184,0.13)",
+      bottom: "#0b1120"
+    },
+    genai: {
+      primary: "#e00083",
+      secondary: "#8b5cf6",
+      tertiary: "#22d3ee",
+      from: "#18051a",
+      mid: "#2b1558",
+      to: "#071828",
+      grid: "rgba(224,0,131,0.13)",
+      bottom: "#18051a"
     }
   };
 

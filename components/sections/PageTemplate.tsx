@@ -4,6 +4,7 @@ import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Hero } from "@/components/sections/Hero";
 import { HeroVideoBot } from "@/components/sections/HeroVideoBot";
 import { ProductProductionShowcase } from "@/components/sections/ProductProductionShowcase";
+import { Resource3DShowcase } from "@/components/sections/Resource3DShowcase";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
 import { Section, SectionHeading } from "@/components/ui/Section";
@@ -38,6 +39,8 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
           accentColor={page.accentColor}
         />
       )}
+
+      {isResource ? <Resource3DShowcase page={page} /> : null}
 
       <Section>
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">

@@ -10,7 +10,7 @@ export const resourcePages: PageContent[] = [
     subheadline:
       "Read practical guidance on agent design, realtime infrastructure, model orchestration, workflow automation, and enterprise governance.",
     visual: "library",
-    accentColor: "#28c7e8",
+    accentColor: "#38bdf8",
     iconName: "FileText",
     positioning:
       "The Teleaon AI blog gives builders and executives a clear view into what it takes to move AI agents from prototype to reliable production systems.",
@@ -44,7 +44,7 @@ export const resourcePages: PageContent[] = [
     subheadline:
       "Explore implementation guides, API patterns, deployment references, integration notes, and operating controls for enterprise AI systems.",
     visual: "coder",
-    accentColor: "#28c7e8",
+    accentColor: "#10b981",
     iconName: "TerminalSquare",
     positioning:
       "Documentation is organized around the full agent lifecycle: connect channels, configure models, attach tools, deploy services, monitor sessions, and govern actions.",
@@ -78,7 +78,7 @@ export const resourcePages: PageContent[] = [
     subheadline:
       "Explore deployment stories across customer operations, network support, knowledge automation, engineering productivity, and commerce.",
     visual: "enterprise",
-    accentColor: "#28c7e8",
+    accentColor: "#f59e0b",
     iconName: "Building2",
     positioning:
       "Case studies translate platform capabilities into real operating value: faster resolution, lower manual effort, better customer experiences, and stronger governance.",
@@ -112,7 +112,7 @@ export const resourcePages: PageContent[] = [
     subheadline:
       "Download research-backed guidance for RAG, realtime AI, agent orchestration, infrastructure, observability, compliance, and governance.",
     visual: "genai",
-    accentColor: "#28c7e8",
+    accentColor: "#e00083",
     iconName: "FileText",
     positioning:
       "Whitepapers give technical leaders a deeper foundation for AI platform decisions, from architecture principles to governance controls and deployment models.",
@@ -146,7 +146,7 @@ export const resourcePages: PageContent[] = [
     subheadline:
       "Join practical sessions on voice AI, agentic workflows, secure infrastructure, enterprise governance, and production operating models.",
     visual: "video",
-    accentColor: "#28c7e8",
+    accentColor: "#a78bfa",
     iconName: "Video",
     positioning:
       "Webinars give teams a direct way to learn deployment patterns, ask architecture questions, and align business and technical stakeholders.",

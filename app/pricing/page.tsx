@@ -7,7 +7,7 @@ import { pricingTiers } from "@/data/pricing";
 
 export const metadata: Metadata = {
   title: "Pricing",
-  description: "Pricing for Teleaon AI Builder, Growth, and Enterprise AI agent plans."
+  description: "Malaysia Ringgit pricing for Teleaon AI Builder, Growth, and Enterprise AI agent plans."
 };
 
 export default function PricingPage() {
@@ -16,14 +16,14 @@ export default function PricingPage() {
       <Hero
         title="Pricing"
         headline="Start building agents for free, scale with enterprise control"
-        subheadline="Choose the plan that matches your AI maturity, deployment requirements, usage volume, and governance needs."
+        subheadline="Choose the Malaysia Ringgit plan that matches your AI maturity, deployment requirements, usage volume, and governance needs."
         visual="platform"
         primaryLabel="Start building"
         secondaryLabel="Contact sales"
         secondaryHref="/contact-us"
       />
       <Section>
-        <SectionHeading title="Plans for every stage of agent deployment" description="From early prototypes to private enterprise environments, pricing is designed around usage, control, and support needs." />
+        <SectionHeading title="Plans for every stage of agent deployment" description="All listed prices are in Malaysian Ringgit (MYR) and designed around usage, control, deployment model, and support needs." />
         <div className="grid gap-4 lg:grid-cols-3">
           {pricingTiers.map((tier) => (
             <article key={tier.name} className="rounded-2xl border border-white/10 bg-white/[0.025] p-6">
@@ -44,6 +44,7 @@ export default function PricingPage() {
         <FAQSection
           items={[
             { question: "Can we start without a credit card?", answer: "Yes. Builder is designed for evaluation and prototyping without procurement friction." },
+            { question: "Are prices listed in Malaysian Ringgit?", answer: "Yes. Public pricing is shown in Malaysian Ringgit (MYR). Enterprise agreements can be quoted with Malaysia-specific procurement, tax, and billing requirements." },
             { question: "How is usage measured?", answer: "Usage is based on agent session minutes and deployment requirements, with custom terms available for enterprise environments." },
             { question: "Can we deploy privately?", answer: "Yes. Enterprise plans can support private cloud, hybrid, networking, security, and compliance requirements." },
             { question: "Do you offer implementation support?", answer: "Growth and Enterprise customers can receive architecture guidance, solution planning, and deployment support." }

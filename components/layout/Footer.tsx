@@ -3,6 +3,7 @@ import { Code2, MessageCircle, Network, Send } from "lucide-react";
 import { productCards, solutionCards, useCaseCards } from "@/data/site";
 import { resourceCards } from "@/data/resources";
 import { companyCards } from "@/data/company";
+import { legalLinks } from "@/data/legal";
 import { TeleaonLogo } from "@/components/ui/TeleaonLogo";
 
 export function Footer() {
@@ -16,7 +17,7 @@ export function Footer() {
   return (
     <footer className="relative overflow-hidden border-t border-slate-200 bg-[linear-gradient(115deg,#ffffff_0%,#ffffff_40%,#eefbff_72%,#fff0f8_100%)]">
       <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.16),transparent_30%),radial-gradient(circle_at_84%_28%,rgba(224,0,131,0.13),transparent_32%)]" aria-hidden="true" />
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-5 py-14 sm:px-6 lg:grid-cols-[1.2fr_2fr] lg:px-8">
+      <div className="relative z-10 mx-auto grid max-w-[94rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_3fr] lg:px-6 xl:px-8">
         <div>
           <Link href="/" className="flex items-center gap-3">
             <TeleaonLogo />
@@ -32,7 +33,7 @@ export function Footer() {
             </button>
           </form>
         </div>
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-6">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-[repeat(5,minmax(0,1fr))_minmax(20rem,1.7fr)]">
           <FooterColumn title="Products" links={productCards} />
           <FooterColumn title="Resources" links={resourceCards} />
           <FooterColumn title="Company" links={companyCards} />
@@ -47,6 +48,9 @@ export function Footer() {
               <Link href="/use-case" className="hover:text-cyan">Use Cases</Link>
               <span>hello@teleaon.ai</span>
               <span>+1 (555) 019-2048</span>
+              <span className="max-w-md leading-6">
+                TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.
+              </span>
             </div>
             <div className="mt-5 flex gap-3 text-slate-600">
               {[
@@ -62,8 +66,17 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="relative z-10 border-t border-slate-200/80 bg-white/55 py-6 text-center text-sm text-slate-500 backdrop-blur-sm">
-        © 2026 Teleaon AI. All rights reserved.
+      <div className="relative z-10 border-t border-slate-200/80 bg-white/55 px-5 py-6 text-sm text-slate-500 backdrop-blur-sm">
+        <div className="mx-auto flex max-w-[94rem] flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-left">
+          <span>© 2026 Teleaon AI. All rights reserved.</span>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            {legalLinks.map((link) => (
+              <Link key={link.href} href={link.href} className="hover:text-cyan">
+                {link.title}
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
   );

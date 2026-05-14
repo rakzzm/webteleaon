@@ -27,7 +27,9 @@ export default function ContactPage() {
               </div>
               <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
                 <div className="font-semibold text-white">Office</div>
-                <div className="mt-1">Enterprise AI Briefing Center, San Francisco, CA</div>
+                <div className="mt-1">
+                  TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.
+                </div>
               </div>
             </div>
           </div>

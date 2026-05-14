@@ -17,6 +17,14 @@ export const metadata: Metadata = {
   },
   description:
     "Build, deploy, and scale intelligent AI systems with secure agentic applications, AI infrastructure, and enterprise generative AI.",
+  icons: {
+    icon: [
+      { url: "/icons/teleaon-favicon.ico", sizes: "256x256", type: "image/x-icon" },
+      { url: "/icons/teleaon-favicon.png", sizes: "512x512", type: "image/png" }
+    ],
+    apple: [{ url: "/icons/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    shortcut: ["/icons/teleaon-favicon.ico"]
+  },
   openGraph: {
     title: "Teleaon AI",
     description: "Enterprise AI platform, infrastructure, SaaS applications, and agentic automation.",
