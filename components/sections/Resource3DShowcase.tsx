@@ -51,53 +51,34 @@ export function Resource3DShowcase({ page }: { page: PageContent }) {
           </p>
         </div>
 
-        <div className="relative min-h-[430px] overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-5 shadow-[0_40px_120px_rgba(0,0,0,0.25)] backdrop-blur-xl [perspective:1200px]">
-          <motion.div
-            className="absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-[2rem] border border-white/15 bg-white/[0.06] shadow-[0_35px_90px_rgba(0,0,0,0.30)] backdrop-blur-xl [transform-style:preserve-3d]"
-            animate={{ rotateX: [54, 62, 54], rotateZ: [42, 48, 42] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            style={{ boxShadow: `0 0 90px ${palette[0]}26, inset 0 0 40px rgba(255,255,255,0.04)` }}
-          >
-            <div className="absolute inset-6 rounded-2xl border border-white/10 bg-black/20" />
-            <div
-              className="absolute inset-8 rounded-2xl opacity-80"
-              style={{
-                backgroundImage: `radial-gradient(circle, ${palette[0]} 1.5px, transparent 1.7px)`,
-                backgroundSize: "16px 16px"
-              }}
-            />
-            <div className="absolute left-1/2 top-1/2 grid h-20 w-20 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-2xl border border-white/15 bg-black/30">
-              <Icon className="h-9 w-9" style={{ color: palette[0] }} />
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.055] p-4 shadow-[0_40px_120px_rgba(0,0,0,0.25)] backdrop-blur-xl sm:p-5">
+          <div className="mb-4 flex items-center gap-4 rounded-[1.5rem] border border-white/10 bg-slate-950/70 p-4 text-white">
+            <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl border border-white/10 bg-white/10" style={{ color: palette[0] }}>
+              <Icon className="h-6 w-6" />
             </div>
-          </motion.div>
-
-          {featureItems.map((item, index) => {
-            const angle = (index / featureItems.length) * Math.PI * 2 - Math.PI / 5;
-            const x = Math.cos(angle) * 220;
-            const y = Math.sin(angle) * 116;
-
-            return (
+            <div>
+              <div className="text-sm font-semibold">Resource knowledge system</div>
+              <div className="mt-1 text-xs leading-5 text-slate-400">Readable content signals for enterprise AI teams.</div>
+            </div>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {featureItems.map((item, index) => (
               <motion.div
                 key={item}
-                className="absolute left-1/2 top-1/2 w-52 rounded-2xl border border-white/10 bg-black/28 p-4 text-sm text-white shadow-[0_18px_60px_rgba(0,0,0,0.24)] backdrop-blur-xl"
-                initial={{ opacity: 0, x: 0, y: 0, scale: 0.92 }}
-                whileInView={{ opacity: 1, x, y, scale: 1 }}
-                viewport={{ once: true, amount: 0.3 }}
-                animate={{ y: [y, y - 8, y], opacity: [0.78, 1, 0.78] }}
-                transition={{
-                  duration: 4.8,
-                  delay: index * 0.16,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
+                className="min-h-32 rounded-2xl border border-white/12 bg-slate-950/75 p-4 text-white shadow-[0_18px_50px_rgba(0,0,0,0.18)] backdrop-blur-xl"
+                initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.35 }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.45, delay: index * 0.08, ease: "easeOut" }}
               >
-                <span className="mb-3 block h-1 w-10 rounded-full" style={{ backgroundColor: palette[index % palette.length] }} />
-                <span className="font-semibold">{item}</span>
+                <span className="mb-4 block h-1 w-10 rounded-full" style={{ backgroundColor: palette[index % palette.length] }} />
+                <span className="block text-sm font-semibold leading-6 text-slate-50">{item}</span>
               </motion.div>
-            );
-          })}
+            ))}
+          </div>
 
-          <div className="absolute bottom-5 left-5 right-5 rounded-2xl border border-white/10 bg-black/30 p-4 text-white backdrop-blur-xl">
+          <div className="mt-4 rounded-2xl border border-white/10 bg-slate-950/75 p-4 text-white backdrop-blur-xl">
             <div className="flex items-center gap-3">
               <ShieldCheck className="h-5 w-5" style={{ color: palette[0] }} />
               <div>
