@@ -13,6 +13,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/three": "^0.184.1",
     "clsx": "latest",
     "framer-motion": "latest",
     "lucide-react": "latest",
@@ -20,6 +21,7 @@
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "latest",
+    "three": "^0.184.0",
     "typescript": "latest"
   },
   "devDependencies": {

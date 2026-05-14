@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { OverviewPage } from "@/components/sections/OverviewPage";
+import { CTASection } from "@/components/sections/CTASection";
+import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { ResourceDottedHero } from "@/components/sections/ResourceDottedHero";
+import { Section, SectionHeading } from "@/components/ui/Section";
 import { resourceCards } from "@/data/resources";
 
 export const metadata: Metadata = {
@@ -9,14 +12,21 @@ export const metadata: Metadata = {
 
 export default function ResourcesPage() {
   return (
-    <OverviewPage
-      title="Resources"
-      headline="Learn how production AI agents are built, deployed, and governed"
-      description="A resource center for technical teams, business sponsors, and governance leaders planning enterprise agent deployments."
-      visual="library"
-      cards={resourceCards}
-      sectionTitle="Resource Library"
-      sectionDescription="Every resource category has its own page with practical content for planning, building, and scaling AI agents."
-    />
+    <>
+      <ResourceDottedHero />
+      <Section>
+        <SectionHeading
+          title="Resource Library"
+          description="Every resource category has its own page with practical content for planning, building, and scaling AI agents."
+        />
+        <FeatureGrid items={resourceCards} />
+      </Section>
+      <Section className="pt-0">
+        <CTASection
+          title="Ready to explore resources?"
+          description="Talk with our team about the fastest route from evaluation to production deployment."
+        />
+      </Section>
+    </>
   );
 }

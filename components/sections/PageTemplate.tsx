@@ -1,4 +1,5 @@
 import { CTASection } from "@/components/sections/CTASection";
+import { CompanyWavyHero } from "@/components/sections/CompanyWavyHero";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Hero } from "@/components/sections/Hero";
@@ -30,6 +31,8 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
     <>
       {page.slug === "agent-video-bot" ? (
         <HeroVideoBot />
+      ) : isCompany ? (
+        <CompanyWavyHero title={page.title} headline={page.headline} subheadline={page.subheadline} />
       ) : (
         <Hero
           title={page.title}
