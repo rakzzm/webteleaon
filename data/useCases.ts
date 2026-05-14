@@ -32,7 +32,7 @@ export const useCases: PageContent[] = [
     subheadline:
       "Deploy AI chat agents that answer from approved knowledge, create tickets, capture leads, personalize responses, and escalate when needed.",
     visual: "chat",
-    accentColor: "#38bdf8",
+    accentColor: "#34d399",
     iconName: "MessageSquare",
     positioning: "For customer support, sales, internal help desks, employee portals, and product-led onboarding.",
     capabilities: ["Website and app chat", "WhatsApp, Slack, and Teams channels", "Knowledge base answers", "Ticket creation", "Lead capture", "Personalization"],
@@ -76,7 +76,7 @@ export const useCases: PageContent[] = [
     subheadline:
       "Classify inboxes, draft replies, trigger follow-ups, nurture leads, resolve support requests, and route internal tasks with governed email agents.",
     visual: "email",
-    accentColor: "#60a5fa",
+    accentColor: "#f97316",
     iconName: "Mail",
     positioning: "For sales, support, recruiting, finance, operations, and shared service inboxes.",
     capabilities: ["Inbox triage", "Automated reply drafting", "Follow-up sequencing", "Lead nurturing", "Support routing", "Internal workflow triggers"],
@@ -120,7 +120,7 @@ export const useCases: PageContent[] = [
     subheadline:
       "Help teams generate code, debug issues, write tests, document systems, review changes, and support deployments with enterprise controls.",
     visual: "coder",
-    accentColor: "#22d3ee",
+    accentColor: "#10b981",
     iconName: "TerminalSquare",
     positioning: "For software teams that want AI coding leverage while preserving review, security, quality, and deployment discipline.",
     capabilities: ["Code generation", "Debugging support", "Test writing", "Documentation", "Code review", "Deployment assistance"],
@@ -142,7 +142,7 @@ export const useCases: PageContent[] = [
     subheadline:
       "Guide shoppers from discovery to purchase with recommendations, cart recovery, order tracking, support, and personalized upsell workflows.",
     visual: "commerce",
-    accentColor: "#a78bfa",
+    accentColor: "#e00083",
     iconName: "ShoppingCart",
     positioning: "For retailers, marketplaces, subscription brands, B2B commerce teams, and digital sales organizations.",
     capabilities: ["Product discovery", "Recommendations", "Cart recovery", "Customer support", "Order tracking", "Upsell and cross-sell"],

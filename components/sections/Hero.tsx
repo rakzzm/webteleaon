@@ -25,10 +25,30 @@ export function Hero({
   secondaryHref = "/products",
   secondaryLabel = "Explore Products"
 }: HeroProps) {
+  const theme = getHeroTheme(visual, accentColor ?? "#28c7e8");
+
   return (
-    <section className="relative overflow-hidden bg-radial-grid">
-      <div className="absolute inset-0 mesh-bg opacity-60" />
-      <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink to-transparent" />
+    <section
+      className="relative overflow-hidden"
+      style={{
+        background:
+          `radial-gradient(circle at 18% 18%, ${theme.primary}38, transparent 30%), ` +
+          `radial-gradient(circle at 78% 26%, ${theme.secondary}30, transparent 32%), ` +
+          `radial-gradient(circle at 50% 84%, ${theme.tertiary}26, transparent 36%), ` +
+          `linear-gradient(135deg, ${theme.from} 0%, ${theme.mid} 48%, ${theme.to} 100%)`
+      }}
+    >
+      <div
+        className="absolute inset-0 opacity-45"
+        style={{
+          backgroundImage: `linear-gradient(${theme.grid} 1px, transparent 1px), linear-gradient(90deg, ${theme.grid} 1px, transparent 1px)`,
+          backgroundSize: "38px 38px"
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-44"
+        style={{ background: `linear-gradient(to top, ${theme.bottom}, transparent)` }}
+      />
       <div className="relative mx-auto flex min-h-[calc(100vh-8.25rem)] max-w-7xl flex-col items-center px-5 pb-12 pt-24 text-center sm:px-6 lg:px-8">
         <AIHeroVisual type={visual} title={title} accentColor={accentColor ?? "#28c7e8"} modelVariant={title} className="mb-10 w-full max-w-6xl" />
         <div className="max-w-6xl">
@@ -53,5 +73,93 @@ function renderHeadline(headline: string) {
       Build <span className="text-cyan">voice</span>, <span className="text-cyan">video</span>, and{" "}
       <span className="text-cyan">workflow AI</span> agents
     </>
+  );
+}
+
+function getHeroTheme(visual: VisualVariant, accentColor: string) {
+  const themes: Partial<Record<VisualVariant, { primary: string; secondary: string; tertiary: string; from: string; mid: string; to: string; grid: string; bottom: string }>> = {
+    voice: {
+      primary: "#22d3ee",
+      secondary: "#0ea5e9",
+      tertiary: "#14b8a6",
+      from: "#020617",
+      mid: "#06243a",
+      to: "#031b20",
+      grid: "rgba(34,211,238,0.12)",
+      bottom: "#031b20"
+    },
+    chat: {
+      primary: "#34d399",
+      secondary: "#22d3ee",
+      tertiary: "#84cc16",
+      from: "#031712",
+      mid: "#06342d",
+      to: "#021f2b",
+      grid: "rgba(52,211,153,0.13)",
+      bottom: "#031712"
+    },
+    video: {
+      primary: "#a78bfa",
+      secondary: "#ec4899",
+      tertiary: "#38bdf8",
+      from: "#10051f",
+      mid: "#25104c",
+      to: "#05172f",
+      grid: "rgba(167,139,250,0.13)",
+      bottom: "#10051f"
+    },
+    email: {
+      primary: "#60a5fa",
+      secondary: "#f97316",
+      tertiary: "#f472b6",
+      from: "#07111f",
+      mid: "#142b4f",
+      to: "#2b1308",
+      grid: "rgba(96,165,250,0.12)",
+      bottom: "#07111f"
+    },
+    os: {
+      primary: "#8b5cf6",
+      secondary: "#22d3ee",
+      tertiary: "#f43f5e",
+      from: "#09051f",
+      mid: "#1d1555",
+      to: "#071828",
+      grid: "rgba(139,92,246,0.14)",
+      bottom: "#09051f"
+    },
+    coder: {
+      primary: "#10b981",
+      secondary: "#22d3ee",
+      tertiary: "#eab308",
+      from: "#03130f",
+      mid: "#06251f",
+      to: "#171403",
+      grid: "rgba(16,185,129,0.13)",
+      bottom: "#03130f"
+    },
+    commerce: {
+      primary: "#e00083",
+      secondary: "#f59e0b",
+      tertiary: "#22d3ee",
+      from: "#1f0616",
+      mid: "#3a1028",
+      to: "#2a1803",
+      grid: "rgba(224,0,131,0.13)",
+      bottom: "#1f0616"
+    }
+  };
+
+  return (
+    themes[visual] ?? {
+      primary: accentColor,
+      secondary: "#8b5cf6",
+      tertiary: "#e00083",
+      from: "#020403",
+      mid: "#08121c",
+      to: "#020403",
+      grid: "rgba(40,199,232,0.10)",
+      bottom: "#020403"
+    }
   );
 }
