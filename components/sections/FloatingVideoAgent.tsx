@@ -73,6 +73,7 @@ export function FloatingVideoAgent() {
   const speechShouldSubmitRef = useRef(false);
   const speechFinalTranscriptRef = useRef("");
   const speechInterimTranscriptRef = useRef("");
+  const speechAutoSubmitTimerRef = useRef<number | null>(null);
   const isReplyingRef = useRef(false);
 
   useEffect(() => {
@@ -140,6 +141,10 @@ export function FloatingVideoAgent() {
     if (recordTimerRef.current) {
       window.clearTimeout(recordTimerRef.current);
       recordTimerRef.current = null;
+    }
+    if (speechAutoSubmitTimerRef.current) {
+      window.clearTimeout(speechAutoSubmitTimerRef.current);
+      speechAutoSubmitTimerRef.current = null;
     }
 
     if (speechRecognitionRef.current) {
@@ -342,7 +347,17 @@ export function FloatingVideoAgent() {
         if (liveText) {
           setInput(liveText);
           setResponse(`Listening: ${liveText}`);
-          setStatus(interimTranscript ? "Recognizing speech live..." : "Speech captured");
+          setStatus(interimTranscript ? "Recognizing speech live..." : "Speech captured. Answering when you pause...");
+
+          if (speechAutoSubmitTimerRef.current) {
+            window.clearTimeout(speechAutoSubmitTimerRef.current);
+          }
+          speechAutoSubmitTimerRef.current = window.setTimeout(() => {
+            speechAutoSubmitTimerRef.current = null;
+            if (speechRecognitionRef.current && !isReplyingRef.current) {
+              stopListening(true);
+            }
+          }, interimTranscript ? 1800 : 900);
         }
       };
 
@@ -353,6 +368,10 @@ export function FloatingVideoAgent() {
       };
 
       recognition.onend = () => {
+        if (speechAutoSubmitTimerRef.current) {
+          window.clearTimeout(speechAutoSubmitTimerRef.current);
+          speechAutoSubmitTimerRef.current = null;
+        }
         const shouldSubmit = speechShouldSubmitRef.current;
         const transcript = [speechFinalTranscriptRef.current, speechInterimTranscriptRef.current].filter(Boolean).join(" ").trim();
 
@@ -374,7 +393,7 @@ export function FloatingVideoAgent() {
         window.setTimeout(() => void askAgent(transcript, { preserveSpeechState: true }), 0);
       };
 
-      setResponse("Listening live. Speak naturally, then tap the mic again when finished.");
+      setResponse("Listening live. Speak naturally and I will answer when you pause.");
       setStatus("Realtime speech recognition...");
       setIsListening(true);
 
@@ -482,7 +501,7 @@ export function FloatingVideoAgent() {
                   <Video className="relative h-5 w-5" />
                 </span>
                 <div>
-                  <div className="text-sm font-semibold text-slate-950">Teleaon HeyGen Avatar</div>
+                  <div className="text-sm font-semibold text-slate-950">Teleaon Agent</div>
                   <div className="flex items-center gap-2 text-xs text-slate-500">
                     <span className={cn("h-2 w-2 rounded-full", isReplying || isSpeaking || isListening ? "animate-pulse bg-cyan" : "bg-emerald-500")} />
                     {liveAvatarUrl ? status : isSpeaking ? "Speaking with generated voice" : status}
@@ -539,7 +558,7 @@ export function FloatingVideoAgent() {
                     "grid h-11 w-11 shrink-0 place-items-center rounded-2xl border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:border-cyan hover:text-slate-950",
                     isListening && "border-cyan bg-cyan text-slate-950"
                   )}
-                  aria-label={isListening ? "Stop listening and transcribe" : "Speak to video agent"}
+                  aria-label={isListening ? "Stop listening and answer" : "Speak to Teleaon Agent"}
                   disabled={isReplying || isSpeaking}
                 >
                   {isListening ? <Square className="h-5 w-5 fill-current" /> : <Mic className="h-5 w-5" />}
@@ -548,7 +567,7 @@ export function FloatingVideoAgent() {
                   type={isReplying || isSpeaking ? "button" : "submit"}
                   onClick={isReplying || isSpeaking ? stopAll : undefined}
                   className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-cyan text-slate-950 shadow-sm transition hover:bg-slate-950 hover:text-white"
-                  aria-label={isReplying || isSpeaking ? "Stop video agent" : "Send to video agent"}
+                  aria-label={isReplying || isSpeaking ? "Stop Teleaon Agent" : "Send to Teleaon Agent"}
                 >
                   {isReplying || isSpeaking ? <Square className="h-5 w-5 fill-current" /> : <Send className="h-5 w-5" />}
                 </button>
@@ -621,7 +640,7 @@ function RealtimeAvatarStage({
             muted
             playsInline
             preload="auto"
-            aria-label="Teleaon HeyGen public human avatar preview"
+            aria-label="Teleaon Agent public human avatar preview"
           />
           <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.08),rgba(2,6,23,0.28)_54%,rgba(2,6,23,0.82)_100%)]" />
           {mode === "speaking" && <div className="absolute inset-x-8 bottom-4 h-px bg-cyan/45 shadow-[0_0_18px_rgba(34,211,238,0.85)]" />}
