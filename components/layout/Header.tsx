@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronDown, Code2, Menu, Star, X } from "lucide-react";
 import { productCards } from "@/data/site";
 import { resourceCards } from "@/data/resources";
@@ -45,11 +45,37 @@ function HeaderInner() {
   const [open, setOpen] = useState(false);
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const headerRef = useRef<HTMLElement | null>(null);
+  const closeTimerRef = useRef<number | null>(null);
 
-  const closeMenus = () => {
+  const clearCloseTimer = useCallback(() => {
+    if (closeTimerRef.current) {
+      window.clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+  }, []);
+
+  const closeMenus = useCallback(() => {
+    clearCloseTimer();
     setOpen(false);
     setOpenMenu(null);
-  };
+  }, [clearCloseTimer]);
+
+  const scheduleDesktopMenuClose = useCallback(() => {
+    clearCloseTimer();
+    closeTimerRef.current = window.setTimeout(() => {
+      setOpenMenu(null);
+      closeTimerRef.current = null;
+    }, 140);
+  }, [clearCloseTimer]);
+
+  const openDesktopMenu = useCallback(
+    (label: string) => {
+      clearCloseTimer();
+      setOpen(false);
+      setOpenMenu(label);
+    },
+    [clearCloseTimer]
+  );
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -62,14 +88,31 @@ function HeaderInner() {
       if (event.key === "Escape") closeMenus();
     };
 
+    const handleViewportChange = () => {
+      setOpenMenu(null);
+    };
+
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("scroll", handleViewportChange, { passive: true });
+    window.addEventListener("resize", closeMenus);
 
     return () => {
+      clearCloseTimer();
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("scroll", handleViewportChange);
+      window.removeEventListener("resize", closeMenus);
     };
-  }, []);
+  }, [clearCloseTimer, closeMenus]);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <header ref={headerRef} className="sticky inset-x-0 top-0 z-50 border-b border-slate-200 bg-[linear-gradient(115deg,#ffffff_0%,#ffffff_44%,#f0fbff_70%,#fff1f9_100%)] shadow-[0_12px_44px_rgba(14,116,144,0.10)]">
@@ -86,13 +129,26 @@ function HeaderInner() {
             <div
               key={menu.label}
               className="relative"
-              onFocus={() => setOpenMenu(menu.items ? menu.label : null)}
+              onFocus={() => {
+                if (menu.items) openDesktopMenu(menu.label);
+              }}
+              onBlur={(event) => {
+                if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                  scheduleDesktopMenuClose();
+                }
+              }}
+              onMouseEnter={() => {
+                if (menu.items) openDesktopMenu(menu.label);
+              }}
+              onMouseLeave={scheduleDesktopMenuClose}
             >
               {menu.items ? (
                 <button
                   type="button"
-                  onClick={() => setOpenMenu((current) => (current === menu.label ? null : menu.label))}
-                  onMouseEnter={() => setOpenMenu(menu.label)}
+                  onClick={() => {
+                    clearCloseTimer();
+                    setOpenMenu((current) => (current === menu.label ? null : menu.label));
+                  }}
                   className={cn(
                     "inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm font-semibold text-slate-700 transition hover:bg-cyan/10 hover:text-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan/60",
                     openMenu === menu.label && "bg-cyan/10 text-slate-950"
@@ -118,7 +174,8 @@ function HeaderInner() {
                     "fixed left-1/2 top-[8.75rem] w-[min(64rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 opacity-0 shadow-2xl backdrop-blur-2xl transition",
                     openMenu === menu.label ? "visible opacity-100" : "invisible pointer-events-none"
                   )}
-                  onMouseEnter={() => setOpenMenu(menu.label)}
+                  onMouseEnter={() => openDesktopMenu(menu.label)}
+                  onMouseLeave={scheduleDesktopMenuClose}
                   role="menu"
                 >
                   <MenuPathBackground />
@@ -166,7 +223,10 @@ function HeaderInner() {
         <button
           type="button"
           className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-300 text-slate-900 lg:hidden"
-          onClick={() => setOpen((value) => !value)}
+          onClick={() => {
+            setOpenMenu(null);
+            setOpen((value) => !value);
+          }}
           aria-label="Toggle mobile menu"
           aria-expanded={open}
         >

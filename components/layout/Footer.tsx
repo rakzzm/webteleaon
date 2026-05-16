@@ -26,7 +26,7 @@ export function Footer() {
           <Link href="/" className="flex items-center gap-3">
             <TeleaonLogo />
           </Link>
-          <p className="mt-5 max-w-sm text-sm leading-7 text-slate-600">
+          <p className="mt-5 max-w-sm text-sm font-medium leading-7 text-slate-900">
             Enterprise AI systems for teams that need secure agents, scalable infrastructure, and measurable automation outcomes.
           </p>
           <form className="mt-6 flex max-w-sm gap-2">
@@ -45,18 +45,18 @@ export function Footer() {
           <FooterColumn title="Platform" links={platformLinks} />
           <div>
             <h2 className="text-sm font-semibold text-slate-950">Solutions</h2>
-            <div className="mt-4 grid gap-3 text-sm text-slate-600">
+            <div className="mt-4 grid gap-3 text-sm font-medium text-slate-950">
               {solutionCards.slice(0, 3).map((link) => (
-                <Link key={link.href} href={link.href} className="hover:text-cyan">{link.title}</Link>
+                <Link key={link.href} href={link.href} className="transition hover:text-cyan">{link.title}</Link>
               ))}
-              <Link href="/use-case" className="hover:text-cyan">Use Cases</Link>
+              <Link href="/use-case" className="transition hover:text-cyan">Use Cases</Link>
               <span>info@teleaon.ai</span>
               <span>+1 (555) 019-2048</span>
               <span className="max-w-md leading-6">
                 TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.
               </span>
             </div>
-            <div className="mt-5 flex gap-3 text-slate-600">
+            <div className="mt-5 flex gap-3 text-slate-950">
               {[
                 { Icon: Network, href: "/company/partners", label: "Partners" },
                 { Icon: MessageCircle, href: "/contact-us", label: "Contact" },
@@ -70,12 +70,12 @@ export function Footer() {
           </div>
         </div>
       </div>
-      <div className="relative z-10 border-t border-slate-200/80 bg-white/55 px-5 py-6 text-sm text-slate-500 backdrop-blur-sm">
+      <div className="relative z-10 border-t border-slate-200/80 bg-white/70 px-5 py-6 text-sm font-medium text-slate-950 backdrop-blur-sm">
         <div className="mx-auto flex max-w-[94rem] flex-col items-center justify-between gap-4 text-center lg:flex-row lg:text-left">
           <span>© 2026 Teleaon AI. All rights reserved.</span>
           <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
             {legalLinks.map((link) => (
-              <Link key={link.href} href={link.href} className="hover:text-cyan">
+              <Link key={link.href} href={link.href} className="transition hover:text-cyan">
                 {link.title}
               </Link>
             ))}
@@ -90,9 +90,9 @@ function FooterColumn({ title, links }: { title: string; links: { title: string;
   return (
     <div>
       <h2 className="text-sm font-semibold text-slate-950">{title}</h2>
-      <div className="mt-4 grid gap-3 text-sm text-slate-600">
+      <div className="mt-4 grid gap-3 text-sm font-medium text-slate-950">
         {links.map((link) => (
-          <Link key={link.href} href={link.href} className="hover:text-cyan">
+          <Link key={link.href} href={link.href} className="transition hover:text-cyan">
             {link.title}
           </Link>
         ))}
