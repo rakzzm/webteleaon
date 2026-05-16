@@ -3,6 +3,7 @@ import type { Provider } from "next-auth/providers/index";
 import AzureADProvider from "next-auth/providers/azure-ad";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { getVerifiedUserByEmail } from "@/lib/opensearch-auth-store";
 
 if (!process.env.NEXTAUTH_URL && process.env.NODE_ENV !== "production") {
   process.env.NEXTAUTH_URL = "http://127.0.0.1:3010";
@@ -56,11 +57,7 @@ const providers: Provider[] = [
         return null;
       }
 
-      return {
-        id: email,
-        email,
-        name: credentials?.name?.trim() || email.split("@")[0]
-      };
+      return getVerifiedUserByEmail(email);
     }
   })
 ];

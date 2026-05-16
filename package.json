@@ -20,6 +20,7 @@
     "lucide-react": "latest",
     "next": "^16.2.6",
     "next-auth": "^4.24.14",
+    "nodemailer": "^8.0.7",
     "react": "latest",
     "react-dom": "latest",
     "tailwind-merge": "latest",
@@ -29,6 +30,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
     "@eslint/js": "^9.39.4",
+    "@types/nodemailer": "^8.0.0",
     "autoprefixer": "^10.5.0",
     "eslint": "latest",
     "eslint-config-next": "latest",

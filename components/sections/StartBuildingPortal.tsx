@@ -86,6 +86,10 @@ export function StartBuildingPortal() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [sessionEmail, setSessionEmail] = useState("");
   const [authError, setAuthError] = useState("");
+  const [verificationCode, setVerificationCode] = useState("");
+  const [verificationStarted, setVerificationStarted] = useState(false);
+  const [verificationNotice, setVerificationNotice] = useState("");
+  const [isVerifyingEmail, setIsVerifyingEmail] = useState(false);
   const [availableProviders, setAvailableProviders] = useState<Record<string, boolean>>({});
   const userLabel = useMemo(() => sessionEmail || email.trim() || `${provider[0].toUpperCase()}${provider.slice(1)} workspace`, [email, provider, sessionEmail]);
 
@@ -132,25 +136,79 @@ export function StartBuildingPortal() {
     await signIn(nextProvider, { callbackUrl: "/start-building" });
   };
 
-  const authenticateWithEmail = async () => {
+  const requestEmailVerification = async () => {
     const normalizedEmail = email.trim().toLowerCase();
     setProvider("email");
     setAuthError("");
+    setVerificationNotice("");
+    setIsVerifyingEmail(true);
 
-    const result = await signIn("email", {
-      email: normalizedEmail,
-      name: normalizedEmail.split("@")[0],
-      redirect: false,
-      callbackUrl: "/start-building"
-    });
+    try {
+      const response = await fetch("/api/auth/email-verification/request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          name: normalizedEmail.split("@")[0]
+        })
+      });
+      const payload = (await response.json()) as { message?: string; devCode?: string };
 
-    if (result?.error) {
-      setAuthError("Enter a valid email address to continue.");
-      return;
+      if (!response.ok) {
+        setAuthError(payload.message || "Could not send verification code.");
+        return;
+      }
+
+      setVerificationStarted(true);
+      setVerificationNotice(payload.devCode ? `${payload.message || "Verification code ready."} Code: ${payload.devCode}` : payload.message || "Verification code sent. Please check your email.");
+    } catch (error) {
+      setAuthError(error instanceof Error ? error.message : "Could not send verification code.");
+    } finally {
+      setIsVerifyingEmail(false);
     }
+  };
 
-    setSessionEmail(normalizedEmail);
-    setIsLoggedIn(true);
+  const confirmEmailVerification = async () => {
+    const normalizedEmail = email.trim().toLowerCase();
+    setAuthError("");
+    setVerificationNotice("");
+    setIsVerifyingEmail(true);
+
+    try {
+      const verificationResponse = await fetch("/api/auth/email-verification/confirm", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: normalizedEmail,
+          code: verificationCode
+        })
+      });
+      const verificationPayload = (await verificationResponse.json()) as { message?: string };
+
+      if (!verificationResponse.ok) {
+        setAuthError(verificationPayload.message || "Verification failed.");
+        return;
+      }
+
+      const result = await signIn("email", {
+        email: normalizedEmail,
+        name: normalizedEmail.split("@")[0],
+        redirect: false,
+        callbackUrl: "/start-building"
+      });
+
+      if (result?.error) {
+        setAuthError("Email was verified, but sign in could not complete. Please try again.");
+        return;
+      }
+
+      setSessionEmail(normalizedEmail);
+      setIsLoggedIn(true);
+    } catch (error) {
+      setAuthError(error instanceof Error ? error.message : "Verification failed.");
+    } finally {
+      setIsVerifyingEmail(false);
+    }
   };
 
   const authenticate = async (nextProvider: AuthProvider) => {
@@ -166,7 +224,7 @@ export function StartBuildingPortal() {
     }
 
     if (email.trim()) {
-      await authenticateWithEmail();
+      await requestEmailVerification();
     }
   };
 
@@ -298,7 +356,11 @@ export function StartBuildingPortal() {
               className="space-y-3"
               onSubmit={(event) => {
                 event.preventDefault();
-                void authenticate("email");
+                if (verificationStarted) {
+                  void confirmEmailVerification();
+                } else {
+                  void authenticate("email");
+                }
               }}
             >
               <label className="block text-sm font-semibold text-slate-700" htmlFor="start-building-email">
@@ -311,15 +373,58 @@ export function StartBuildingPortal() {
                   type="email"
                   required
                   value={email}
-                  onChange={(event) => setEmail(event.target.value)}
+                  onChange={(event) => {
+                    setEmail(event.target.value);
+                    setVerificationStarted(false);
+                    setVerificationCode("");
+                    setVerificationNotice("");
+                    setAuthError("");
+                  }}
                   placeholder="name@company.com"
                   className="h-12 w-full rounded-xl border border-slate-200 bg-white pl-11 pr-4 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-cyan"
                 />
               </div>
+              {verificationStarted ? (
+                <div>
+                  <label className="block text-sm font-semibold text-slate-700" htmlFor="start-building-code">
+                    Verification code
+                  </label>
+                  <input
+                    id="start-building-code"
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    maxLength={6}
+                    required
+                    value={verificationCode}
+                    onChange={(event) => setVerificationCode(event.target.value.replace(/\D/g, "").slice(0, 6))}
+                    placeholder="6 digit code"
+                    className="mt-2 h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm tracking-[0.35em] text-slate-900 outline-none transition placeholder:tracking-normal placeholder:text-slate-400 focus:border-cyan"
+                  />
+                </div>
+              ) : null}
               <button type="submit" className="flex min-h-12 w-full items-center justify-center gap-2 rounded-xl bg-cyan px-5 text-sm font-semibold text-slate-950 transition hover:bg-slate-950 hover:text-white">
-                {authMode === "signin" ? "Sign in with email" : "Create account"}
+                {isVerifyingEmail ? "Please wait..." : verificationStarted ? "Verify email and continue" : authMode === "signin" ? "Send email code" : "Create account"}
                 <LockKeyhole className="h-4 w-4" />
               </button>
+              {verificationStarted ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setVerificationStarted(false);
+                    setVerificationCode("");
+                    setVerificationNotice("");
+                    setAuthError("");
+                  }}
+                  className="w-full text-sm font-semibold text-slate-500 transition hover:text-slate-950"
+                >
+                  Use a different email
+                </button>
+              ) : null}
+              {verificationNotice ? (
+                <p className="rounded-xl border border-cyan/30 bg-cyan/10 px-4 py-3 text-sm font-semibold text-slate-700">
+                  {verificationNotice}
+                </p>
+              ) : null}
               {authError ? (
                 <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm font-semibold text-amber-800">
                   {authError}
