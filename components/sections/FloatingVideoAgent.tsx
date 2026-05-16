@@ -73,6 +73,11 @@ export function FloatingVideoAgent() {
   const speechShouldSubmitRef = useRef(false);
   const speechFinalTranscriptRef = useRef("");
   const speechInterimTranscriptRef = useRef("");
+  const isReplyingRef = useRef(false);
+
+  useEffect(() => {
+    isReplyingRef.current = isReplying;
+  }, [isReplying]);
 
   const clearVoice = useCallback(() => {
     voiceAbortRef.current?.abort();
@@ -249,12 +254,14 @@ export function FloatingVideoAgent() {
     }
   };
 
-  const askAgent = async (message = input) => {
+  const askAgent = async (message = input, options: { preserveSpeechState?: boolean } = {}) => {
     const trimmed = message.trim();
-    if (!trimmed || isReplying) return;
+    if (!trimmed || isReplyingRef.current) return;
 
     abortRef.current?.abort();
-    stopListening(false);
+    if (!options.preserveSpeechState) {
+      stopListening(false);
+    }
     clearVoice();
     const controller = new AbortController();
     abortRef.current = controller;
@@ -363,8 +370,8 @@ export function FloatingVideoAgent() {
 
         setInput(transcript);
         setResponse(`You said: ${transcript}`);
-        setStatus("Speech recognized");
-        void askAgent(transcript);
+        setStatus("Thinking...");
+        window.setTimeout(() => void askAgent(transcript, { preserveSpeechState: true }), 0);
       };
 
       setResponse("Listening live. Speak naturally, then tap the mic again when finished.");
@@ -436,7 +443,9 @@ export function FloatingVideoAgent() {
 
             setInput(text);
             setResponse(`You said: ${text}`);
-            void askAgent(text);
+            setStatus("Thinking...");
+            sttAbortRef.current = null;
+            window.setTimeout(() => void askAgent(text, { preserveSpeechState: true }), 0);
           })
           .catch((error) => {
             if (controller.signal.aborted) return;
