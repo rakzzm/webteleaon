@@ -40,10 +40,6 @@ export default function ContactPage() {
                 <div className="mt-1">info@teleaon.ai</div>
               </div>
               <div className="contact-detail-card">
-                <div className="font-semibold text-white">Phone</div>
-                <div className="mt-1">+1 (555) 019-2048</div>
-              </div>
-              <div className="contact-detail-card">
                 <div className="font-semibold text-white">Office</div>
                 <div className="mt-1">
                   TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.

@@ -51,7 +51,6 @@ export function Footer() {
               ))}
               <Link href="/use-case" className="transition hover:text-cyan">Use Cases</Link>
               <span>info@teleaon.ai</span>
-              <span>+1 (555) 019-2048</span>
               <span className="max-w-md leading-6">
                 TELEAON AI SDN BHD (202501027023 - 1628435-V), BO1-A-09, Menara 2, KL Eco City, 3, Jalan Bangsar, 59200 Kuala Lumpur, W.P. Kuala Lumpur, Malaysia.
               </span>
