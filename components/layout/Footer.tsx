@@ -4,6 +4,7 @@ import { productCards, solutionCards, useCaseCards } from "@/data/site";
 import { resourceCards } from "@/data/resources";
 import { companyCards } from "@/data/company";
 import { legalLinks } from "@/data/legal";
+import { DottedSurface } from "@/components/sections/DottedSurface";
 import { TeleaonLogo } from "@/components/ui/TeleaonLogo";
 
 export function Footer() {
@@ -15,8 +16,11 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative overflow-hidden border-t border-slate-200 bg-[linear-gradient(115deg,#ffffff_0%,#ffffff_40%,#eefbff_72%,#fff0f8_100%)]">
-      <div className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.16),transparent_30%),radial-gradient(circle_at_84%_28%,rgba(224,0,131,0.13),transparent_32%)]" aria-hidden="true" />
+    <footer className="relative overflow-hidden border-t border-slate-200 bg-[linear-gradient(115deg,#ffffff_0%,#f7fdff_38%,#eefbff_68%,#fff0f8_100%)]">
+      <DottedSurface className="z-0 opacity-100 mix-blend-multiply" particleColor="dark" />
+      <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.10),transparent_30%),radial-gradient(circle_at_84%_28%,rgba(224,0,131,0.09),transparent_32%)]" aria-hidden="true" />
+      <div className="footer-dotted-field pointer-events-none absolute inset-0 z-[2]" aria-hidden="true" />
+      <div className="footer-dotted-horizon pointer-events-none absolute inset-x-0 bottom-0 z-[3] h-96" aria-hidden="true" />
       <div className="relative z-10 mx-auto grid max-w-[94rem] gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[0.9fr_3fr] lg:px-6 xl:px-8">
         <div>
           <Link href="/" className="flex items-center gap-3">

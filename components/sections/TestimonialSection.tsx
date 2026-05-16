@@ -10,13 +10,13 @@ export function TestimonialSection({ variant = "dark" }: { variant?: "dark" | "l
           className={cn(
             "rounded-2xl border p-6 backdrop-blur-xl",
             variant === "dark" && "border-white/10 bg-white/[0.025]",
-            variant === "light" && "border-white/60 bg-white/70 shadow-[0_22px_70px_rgba(15,23,42,0.12)]"
+            variant === "light" && "border-slate-300/80 bg-white/88 shadow-[0_22px_70px_rgba(15,23,42,0.12)]"
           )}
         >
-          <blockquote className={cn("text-base leading-7", variant === "dark" ? "text-slate-200" : "text-slate-800")}>&ldquo;{item.quote}&rdquo;</blockquote>
-          <figcaption className={cn("mt-6 border-t pt-5", variant === "dark" ? "border-white/10" : "border-slate-200/80")}>
+          <blockquote className={cn("text-base font-medium leading-7", variant === "dark" ? "text-slate-200" : "text-slate-950")}>&ldquo;{item.quote}&rdquo;</blockquote>
+          <figcaption className={cn("mt-6 border-t pt-5", variant === "dark" ? "border-white/10" : "border-slate-300/90")}>
             <div className={cn("font-semibold", variant === "dark" ? "text-white" : "text-slate-950")}>{item.name}</div>
-            <div className={cn("mt-1 text-sm", variant === "dark" ? "text-slate-400" : "text-slate-600")}>{item.role}</div>
+            <div className={cn("mt-1 text-sm font-medium", variant === "dark" ? "text-slate-400" : "text-slate-800")}>{item.role}</div>
           </figcaption>
         </figure>
       ))}

@@ -17,6 +17,24 @@ const menus = [
   { label: "Pricing", href: "/pricing" }
 ];
 
+function MenuPathBackground() {
+  const paths = Array.from({ length: 18 }, (_, i) => ({
+    id: i,
+    d: `M-${300 - i * 8} -${118 + i * 7}C-${260 - i * 8} ${40 + i * 4} ${72 - i * 5} ${100 + i * 4} ${
+      176 + i * 10
+    } ${188 - i * 2}C${318 + i * 8} ${306 - i * 4} ${462 + i * 9} ${238 - i * 6} ${642 + i * 8} ${312 - i * 4}`,
+    width: 0.5 + i * 0.04
+  }));
+
+  return (
+    <svg className="absolute inset-0 h-full w-full text-slate-950/35" viewBox="0 0 696 316" fill="none" aria-hidden="true">
+      {paths.map((path) => (
+        <path key={path.id} d={path.d} stroke="currentColor" strokeWidth={path.width} strokeOpacity={0.09 + path.id * 0.018} />
+      ))}
+    </svg>
+  );
+}
+
 export function Header() {
   const pathname = usePathname();
 
@@ -97,13 +115,15 @@ function HeaderInner() {
               {menu.items ? (
                 <div
                   className={cn(
-                    "fixed left-1/2 top-[8.75rem] w-[min(64rem,calc(100vw-2rem))] -translate-x-1/2 rounded-3xl border border-slate-200/80 bg-white/95 opacity-0 shadow-2xl backdrop-blur-2xl transition",
+                    "fixed left-1/2 top-[8.75rem] w-[min(64rem,calc(100vw-2rem))] -translate-x-1/2 overflow-hidden rounded-3xl border border-slate-200/80 bg-white/95 opacity-0 shadow-2xl backdrop-blur-2xl transition",
                     openMenu === menu.label ? "visible opacity-100" : "invisible pointer-events-none"
                   )}
                   onMouseEnter={() => setOpenMenu(menu.label)}
                   role="menu"
                 >
-                  <div className="p-5">
+                  <MenuPathBackground />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_20%,rgba(40,199,232,0.12),transparent_32%),radial-gradient(circle_at_82%_26%,rgba(183,164,255,0.10),transparent_30%)]" />
+                  <div className="relative z-10 p-5">
                     <div className="mb-3 flex items-center justify-between border-b border-slate-200 pb-3">
                       <Link href={menu.href} onClick={closeMenus} className="text-sm font-semibold text-cyan hover:text-slate-950">
                         View all {menu.label}
@@ -114,7 +134,7 @@ function HeaderInner() {
                     </div>
                     <div className={cn("grid gap-3", menu.items.length > 4 ? "grid-cols-3" : "grid-cols-2")}>
                       {menu.items.map((item) => (
-                        <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-cyan/40 hover:bg-cyan/10 focus:outline-none focus:ring-2 focus:ring-cyan/60" role="menuitem">
+                        <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-xl border border-slate-200/85 bg-white/80 p-4 shadow-sm backdrop-blur-md transition hover:border-cyan/40 hover:bg-white focus:outline-none focus:ring-2 focus:ring-cyan/60" role="menuitem">
                           <div className="text-sm font-semibold text-slate-950">{item.title}</div>
                           <p className="mt-2 line-clamp-2 text-sm leading-6 text-slate-600">{item.description}</p>
                         </Link>
@@ -155,8 +175,10 @@ function HeaderInner() {
       </nav>
 
       {open ? (
-        <div className="border-t border-slate-200 bg-white px-5 py-5 lg:hidden">
-          <div className="space-y-4">
+        <div className="relative overflow-hidden border-t border-slate-200 bg-white px-5 py-5 lg:hidden">
+          <MenuPathBackground />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(40,199,232,0.13),transparent_34%),radial-gradient(circle_at_84%_34%,rgba(183,164,255,0.10),transparent_30%)]" />
+          <div className="relative z-10 space-y-4">
             {menus.map((menu) => (
               <div key={menu.label}>
                 <Link href={menu.href} onClick={() => setOpen(false)} className="block py-2 text-base font-semibold text-slate-950">
@@ -165,7 +187,7 @@ function HeaderInner() {
                 {menu.items ? (
                   <div className="mt-2 grid gap-2">
                     {menu.items.map((item) => (
-                      <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-700">
+                      <Link key={item.href} href={item.href} onClick={() => setOpen(false)} className="rounded-2xl border border-slate-200/85 bg-white/80 p-4 text-sm text-slate-700 shadow-sm backdrop-blur-md">
                         {item.title}
                       </Link>
                     ))}

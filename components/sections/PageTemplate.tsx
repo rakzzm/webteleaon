@@ -1,5 +1,6 @@
 import { CTASection } from "@/components/sections/CTASection";
-import { CompanyWavyHero } from "@/components/sections/CompanyWavyHero";
+import { CompanyAnimatedSection } from "@/components/sections/CompanyAnimatedSection";
+import { CompanyGeometricHero } from "@/components/sections/CompanyGeometricHero";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
 import { Hero } from "@/components/sections/Hero";
@@ -10,6 +11,7 @@ import { Resource3DShowcase } from "@/components/sections/Resource3DShowcase";
 import { ResourceAnimatedSection } from "@/components/sections/ResourceAnimatedSection";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
+import { UseCaseAnimatedSection, UseCaseParticleHero } from "@/components/sections/UseCaseParticleHero";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import type { PageContent } from "@/data/site";
 import type { ReactNode } from "react";
@@ -30,16 +32,24 @@ function TemplateSection({
   className,
   isResource,
   isProduct,
+  isCompany,
+  isUseCase,
   resourceVariant = "interactive-light",
-  productVariant = "shader"
+  productVariant = "shader",
+  companyPattern = "aurora",
+  useCaseVariant = "default"
 }: {
   children: ReactNode;
   id?: string;
   className?: string;
   isResource: boolean;
   isProduct: boolean;
+  isCompany: boolean;
+  isUseCase: boolean;
   resourceVariant?: "liquid" | "interactive-light" | "interactive-dark";
   productVariant?: "shader" | "gradient";
+  companyPattern?: "aurora" | "ocean" | "sunset" | "emerald";
+  useCaseVariant?: "default" | "split" | "matrix" | "rail" | "console" | "dual" | "architecture" | "integrations" | "proof" | "faq";
 }) {
   if (isResource) {
     return (
@@ -57,6 +67,22 @@ function TemplateSection({
     );
   }
 
+  if (isCompany) {
+    return (
+      <CompanyAnimatedSection id={id} className={className} pattern={companyPattern}>
+        {children}
+      </CompanyAnimatedSection>
+    );
+  }
+
+  if (isUseCase) {
+    return (
+      <UseCaseAnimatedSection id={id} className={className} variant={useCaseVariant}>
+        {children}
+      </UseCaseAnimatedSection>
+    );
+  }
+
   return (
     <Section id={id} className={className}>
       {children}
@@ -69,13 +95,21 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
   const isSolution = category === "solution";
   const isResource = category === "resource";
   const isCompany = category === "company";
+  const isUseCase = category === "use-case";
 
   return (
     <>
-      {page.slug === "agent-video-bot" ? (
+      {isUseCase ? (
+        <UseCaseParticleHero
+          title={page.title}
+          headline={page.headline}
+          subheadline={page.subheadline}
+          words={[page.navTitle, ...(page.capabilities ?? []).slice(0, 4).map((item) => item.split(" ").slice(0, 2).join(" "))]}
+        />
+      ) : page.slug === "agent-video-bot" ? (
         <HeroVideoBot />
       ) : isCompany ? (
-        <CompanyWavyHero title={page.title} headline={page.headline} subheadline={page.subheadline} />
+        <CompanyGeometricHero title={page.title} headline={page.headline} subheadline={page.subheadline} />
       ) : (
         <Hero
           title={page.title}
@@ -89,7 +123,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
 
       {isResource ? <Resource3DShowcase page={page} /> : null}
 
-      <TemplateSection isResource={isResource} isProduct={isProduct} resourceVariant="interactive-dark" productVariant="shader">
+      <TemplateSection isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-dark" productVariant="shader" companyPattern="aurora" useCaseVariant="split">
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
           <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-7">
             <h2 className="text-2xl font-semibold text-white">{isProduct ? "Problem Statement" : isSolution ? "Challenges" : isResource ? "Resource Focus" : isCompany ? "Company Focus" : "What it does"}</h2>
@@ -102,7 +136,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </div>
       </TemplateSection>
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} id={page.slug === "agent-video-bot" ? "how-it-works" : undefined} isResource={isResource} isProduct={isProduct} resourceVariant="liquid" productVariant="gradient">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} id={page.slug === "agent-video-bot" ? "how-it-works" : undefined} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="liquid" productVariant="gradient" companyPattern="ocean" useCaseVariant="matrix">
         <SectionHeading
           title={isProduct ? "Key Capabilities" : isSolution ? "Recommended AI Capabilities" : isResource ? "What You Will Find" : isCompany ? "What This Page Covers" : "Key Capabilities"}
           description="Composable capabilities designed for real deployment, continuous improvement, and secure enterprise operations."
@@ -111,7 +145,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
       </TemplateSection>
 
       {page.modules ? (
-        <TemplateSection className={isProduct ? undefined : "pt-0"} isResource={false} isProduct={isProduct} productVariant="shader">
+        <TemplateSection className={isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={false} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} productVariant="shader" companyPattern="sunset" useCaseVariant="rail">
           <SectionHeading title={isProduct ? "Platform Modules" : "Architecture Modules"} description="A modular deployment model gives technical teams flexibility while giving executives a clean operating view." />
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {page.modules.map((module, index) => (
@@ -124,13 +158,13 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </TemplateSection>
       ) : null}
 
-      {isProduct && page.production ? (
-        <TemplateSection isResource={false} isProduct={isProduct} productVariant="gradient">
+      {(isProduct || isUseCase) && page.production ? (
+        <TemplateSection isResource={false} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} productVariant="gradient" useCaseVariant="console">
           <ProductProductionShowcase page={page} />
         </TemplateSection>
       ) : null}
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} resourceVariant="interactive-light" productVariant="shader">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-light" productVariant="shader" companyPattern="sunset" useCaseVariant="dual">
         <div className="grid gap-8 lg:grid-cols-2">
           <div>
             <SectionHeading title={isResource ? "Reader Value" : isCompany ? "Why It Matters" : isSolution ? "Business Outcomes" : "Benefits"} description="The platform is designed around outcomes leaders can measure, govern, and communicate." />
@@ -155,7 +189,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </div>
       </TemplateSection>
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} resourceVariant="interactive-dark" productVariant="gradient">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-dark" productVariant="gradient" companyPattern="emerald" useCaseVariant="architecture">
         <SectionHeading title={isProduct ? "Enterprise Security" : "Technical Architecture"} description="Security, observability, approvals, and auditability are designed into the operating model from the beginning." align="center" />
         <div className="rounded-2xl border border-white/10 bg-white/[0.025] p-6 lg:p-8">
           <div className="grid gap-4 md:grid-cols-3">
@@ -170,7 +204,7 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
       </TemplateSection>
 
       {page.integrations ? (
-        <TemplateSection className={isProduct ? undefined : "pt-0"} isResource={false} isProduct={isProduct} productVariant="shader">
+        <TemplateSection className={isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={false} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} productVariant="shader" companyPattern="aurora" useCaseVariant="integrations">
           <SectionHeading title="Integrations" description="Connect AI agents to the systems where work, knowledge, customer context, and approvals already live." />
           <div className="flex flex-wrap gap-3">
             {page.integrations.map((integration) => (
@@ -182,16 +216,16 @@ export function PageTemplate({ page, category }: { page: PageContent; category: 
         </TemplateSection>
       ) : null}
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} resourceVariant="interactive-light" productVariant="gradient">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-light" productVariant="gradient" companyPattern="ocean" useCaseVariant="proof">
         <StatsSection />
       </TemplateSection>
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} resourceVariant="interactive-dark" productVariant="shader">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-dark" productVariant="shader" companyPattern="sunset" useCaseVariant="proof">
         <SectionHeading title="Customer Confidence" description="Enterprise buyers need proof that AI systems can create value without increasing operational risk." />
         <TestimonialSection />
       </TemplateSection>
 
-      <TemplateSection className={isResource || isProduct ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} resourceVariant="interactive-light" productVariant="gradient">
+      <TemplateSection className={isResource || isProduct || isCompany || isUseCase ? undefined : "pt-0"} isResource={isResource} isProduct={isProduct} isCompany={isCompany} isUseCase={isUseCase} resourceVariant="interactive-light" productVariant="gradient" companyPattern="emerald" useCaseVariant="faq">
         <SectionHeading title="FAQ" description="Common questions from technical evaluators, business sponsors, and governance teams." />
         <FAQSection items={page.faq} />
       </TemplateSection>

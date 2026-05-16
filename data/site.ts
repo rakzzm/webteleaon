@@ -147,21 +147,18 @@ export const solutionCards = [
 ];
 
 export const useCaseCards = [
-  ["Agentic Voice Bot", "/use-case/agentic-voice-bot", "PhoneCall"],
-  ["Agentic Chat Bot", "/use-case/agentic-chat-bot", "MessageSquare"],
-  ["Agent Video Bot", "/use-case/agent-video-bot", "Video"],
-  ["Agent Email Bot", "/use-case/agent-email-bot", "Mail"],
-  ["Agentic Operating System", "/use-case/agentic-operating-system", "Network"],
-  ["Agentic Coder", "/use-case/agentic-coder", "TerminalSquare"],
-  ["Agentic Commerce", "/use-case/agentic-commerce", "ShoppingCart"]
-].map(([title, href, iconName]) => ({
+  ["Agentic Voice Bot", "/use-case/agentic-voice-bot", "PhoneCall", "Realtime voice agents for support, scheduling, reminders, qualification, and CRM writeback."],
+  ["Agentic Chat Bot", "/use-case/agentic-chat-bot", "MessageSquare", "Grounded chat agents for web, app, WhatsApp, Slack, Teams, tickets, and lead capture."],
+  ["Agent Video Bot", "/use-case/agent-video-bot", "Video", "Interactive video agents for demos, onboarding, training, product education, and analytics."],
+  ["Agent Email Bot", "/use-case/agent-email-bot", "Mail", "Inbox agents for triage, reply drafting, approvals, follow-ups, shared queues, and SLA reporting."],
+  ["Agentic Operating System", "/use-case/agentic-operating-system", "Network", "A central operating layer for agent registry, tools, memory, approvals, telemetry, and governance."],
+  ["Agentic Coder", "/use-case/agentic-coder", "TerminalSquare", "Governed engineering agents for implementation, debugging, tests, documentation, and PR prep."],
+  ["Agentic Commerce", "/use-case/agentic-commerce", "ShoppingCart", "Commerce agents for discovery, recommendations, cart recovery, order support, and lifecycle journeys."]
+].map(([title, href, iconName, description]) => ({
   title,
   href,
   iconName: iconName as keyof typeof icons,
-  description:
-    title === "Agentic Operating System"
-      ? "A central operating layer connecting agents, tools, approvals, memory, analytics, and governance."
-      : `A production-grade ${title.toLowerCase()} for high-volume enterprise automation.`
+  description
 }));
 
 export const stats = [

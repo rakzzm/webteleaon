@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
+import { BackgroundPathsLayer } from "@/components/sections/BackgroundPathsLayer";
 import { CodeShowcase } from "@/components/sections/CodeShowcase";
 import { CTASection } from "@/components/sections/CTASection";
 import { FeatureGrid } from "@/components/sections/FeatureGrid";
+import { GooeyBackground } from "@/components/sections/GooeyBackground";
 import { HeroVideoBot } from "@/components/sections/HeroVideoBot";
 import { HowItWorks } from "@/components/sections/HowItWorks";
+import { SpiralAnimationBackground } from "@/components/sections/SpiralAnimationBackground";
 import { StatsSection } from "@/components/sections/StatsSection";
 import { TestimonialSection } from "@/components/sections/TestimonialSection";
+import { WritingSectionHeading } from "@/components/sections/WritingSectionHeading";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { productCards, solutionCards, useCaseCards } from "@/data/site";
 
@@ -20,7 +24,9 @@ export default function HomePage() {
       <HeroVideoBot />
 
       <Section className="powering-section isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.42),transparent_26%),radial-gradient(circle_at_84%_50%,rgba(34,197,94,0.28),transparent_34%),linear-gradient(135deg,#e0f7ff_0%,#c9f9ee_48%,#f7e8ff_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.68),transparent_28%),radial-gradient(circle_at_84%_50%,rgba(40,199,232,0.18),transparent_34%),linear-gradient(135deg,#ffffff_0%,#e9fbff_46%,#fff0f8_100%)]" aria-hidden="true" />
+        <BackgroundPathsLayer className="z-[1]" />
+        <div className="absolute inset-0 z-[2] bg-[linear-gradient(90deg,rgba(255,255,255,0.30)_0%,rgba(255,255,255,0.08)_44%,rgba(255,255,255,0.22)_100%)]" aria-hidden="true" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-6 px-5 py-16 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8 lg:py-24">
           <div>
             <SectionHeading title="Powering realtime enterprise agents" description="Built for teams that need low-latency conversations, tool use, governance, and production observability in one platform." />
@@ -35,8 +41,10 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.24),transparent_28%),radial-gradient(circle_at_78%_72%,rgba(224,0,131,0.18),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#fff1fa_100%)]" aria-hidden="true" />
+      <Section className="api-aurora-section isolate max-w-none overflow-hidden px-0 py-0">
+        <div className="absolute inset-0 z-0 bg-zinc-50" aria-hidden="true" />
+        <div className="api-aurora-background absolute inset-0 z-[1]" aria-hidden="true" />
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(ellipse_at_100%_0%,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.18)_38%,rgba(255,255,255,0.72)_78%),linear-gradient(90deg,rgba(255,255,255,0.72)_0%,rgba(255,255,255,0.24)_44%,rgba(255,255,255,0.52)_100%)]" aria-hidden="true" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-6 lg:grid-cols-[0.72fr_1.28fr] lg:px-8 lg:py-24">
           <SectionHeading title="Simple and powerful APIs" description="Developers get code-first control. Enterprise teams get secure deployment, observability, and reusable operating patterns." />
           <CodeShowcase />
@@ -44,8 +52,10 @@ export default function HomePage() {
       </Section>
 
       <Section className="how-light-section isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_16%,rgba(40,199,232,0.16),transparent_28%),radial-gradient(circle_at_82%_22%,rgba(224,0,131,0.12),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f5fdff_52%,#fff3fa_100%)]" aria-hidden="true" />
-        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:42px_42px]" aria-hidden="true" />
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(135deg,#ffffff_0%,#f4fdff_48%,#fff2fa_100%)]" aria-hidden="true" />
+        <GooeyBackground />
+        <div className="absolute inset-0 z-[2] opacity-35 [background-image:linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.055)_1px,transparent_1px)] [background-size:42px_42px]" aria-hidden="true" />
+        <div className="absolute inset-0 z-[3] bg-[radial-gradient(circle_at_50%_42%,rgba(255,255,255,0.18),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.42),rgba(255,255,255,0.14))]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading title="How it works" description="Teleaon connects channels, realtime AI, tools, and governance so agents can move from conversation to action." align="center" />
           <HowItWorks />
@@ -63,22 +73,24 @@ export default function HomePage() {
       </Section>
 
       <Section className="enterprise-file-section isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_18%_20%,rgba(40,199,232,0.18),transparent_28%),radial-gradient(circle_at_80%_18%,rgba(224,0,131,0.12),transparent_28%),linear-gradient(135deg,#ffffff_0%,#f5fdff_48%,#fff4fb_100%)]" aria-hidden="true" />
-        <div className="absolute inset-0 -z-10 opacity-50 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:42px_42px]" aria-hidden="true" />
+        <div className="absolute inset-0 z-0 bg-black" aria-hidden="true" />
+        <SpiralAnimationBackground className="absolute inset-0 z-[1] overflow-hidden opacity-95" />
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_50%_50%,rgba(40,199,232,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(224,0,131,0.14),transparent_30%),linear-gradient(90deg,rgba(0,0,0,0.76)_0%,rgba(0,0,0,0.36)_46%,rgba(0,0,0,0.70)_100%)]" aria-hidden="true" />
+        <div className="absolute inset-0 z-[3] opacity-25 [background-image:linear-gradient(rgba(255,255,255,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:42px_42px]" aria-hidden="true" />
         <div className="relative z-10 mx-auto grid max-w-7xl gap-8 px-5 py-16 sm:px-6 lg:grid-cols-[1fr_0.9fr] lg:px-8 lg:py-24">
           <div>
             <SectionHeading title="Enterprise grade infrastructure" description="Run realtime agents across global regions with monitoring, controls, and compliance evidence for production teams." />
-            <StatsSection variant="light" />
+            <StatsSection variant="dark" />
           </div>
-          <div className="relative min-h-[390px] overflow-hidden rounded-3xl border border-slate-200 bg-white/70 p-6 shadow-[0_24px_80px_rgba(15,23,42,0.10)] backdrop-blur-xl">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(40,199,232,0.20),transparent_42%)]" />
+          <div className="relative min-h-[390px] overflow-hidden rounded-3xl border border-white/15 bg-black/38 p-6 shadow-[0_24px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_38%,rgba(40,199,232,0.24),transparent_42%)]" />
             <div className="absolute inset-x-8 top-10 h-px bg-gradient-to-r from-transparent via-cyan/50 to-transparent" />
             <div className="absolute inset-y-8 left-1/2 w-px bg-gradient-to-b from-transparent via-pink-400/35 to-transparent" />
             <div className="relative grid h-full min-h-[330px] place-items-center text-center">
-              <div className="rounded-3xl border border-cyan/20 bg-white/80 p-8 shadow-sm">
+              <div className="rounded-3xl border border-cyan/25 bg-black/48 p-8 shadow-[0_18px_60px_rgba(40,199,232,0.12)] backdrop-blur-xl">
                 <div className="text-sm font-semibold uppercase tracking-[0.2em] text-cyan">Secure AI Core</div>
-                <div className="mt-3 text-3xl font-semibold text-slate-950">Governed infrastructure</div>
-                <p className="mt-3 max-w-sm text-sm leading-6 text-slate-600">Policy controls, observability, deployment regions, and audit evidence for production AI systems.</p>
+                <div className="mt-3 text-3xl font-semibold text-white">Governed infrastructure</div>
+                <p className="mt-3 max-w-sm text-sm leading-6 text-slate-300">Policy controls, observability, deployment regions, and audit evidence for production AI systems.</p>
               </div>
             </div>
           </div>
@@ -101,18 +113,25 @@ export default function HomePage() {
       </Section>
 
       <Section className="agentic-usecase-section isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_50%_50%,rgba(40,199,232,0.20),transparent_32%),radial-gradient(circle_at_78%_20%,rgba(224,0,131,0.14),transparent_28%),linear-gradient(135deg,#ffffff_0%,#f2fbff_52%,#fff1f9_100%)]" aria-hidden="true" />
-        <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(255,255,255,0.64),rgba(255,255,255,0.34))]" aria-hidden="true" />
+        <div className="absolute inset-0 z-0 bg-[linear-gradient(135deg,#07111f_0%,#073b4c_38%,#155e75_62%,#312e81_100%)]" aria-hidden="true" />
+        <div className="usecase-waterflow absolute inset-0 z-[1]" aria-hidden="true">
+          <span className="usecase-waterflow-sheet usecase-waterflow-sheet-1" />
+          <span className="usecase-waterflow-sheet usecase-waterflow-sheet-2" />
+          <span className="usecase-waterflow-sheet usecase-waterflow-sheet-3" />
+          <span className="usecase-waterflow-ripple usecase-waterflow-ripple-1" />
+          <span className="usecase-waterflow-ripple usecase-waterflow-ripple-2" />
+        </div>
+        <div className="absolute inset-0 z-[2] bg-[radial-gradient(circle_at_18%_18%,rgba(255,255,255,0.18),transparent_26%),radial-gradient(circle_at_80%_72%,rgba(125,211,252,0.20),transparent_34%),linear-gradient(90deg,rgba(2,6,23,0.56)_0%,rgba(2,6,23,0.18)_48%,rgba(2,6,23,0.48)_100%)]" aria-hidden="true" />
         <div className="relative z-10 mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
           <SectionHeading title="Agentic AI use cases" description="Start with one high-value agent or coordinate many through a shared operating layer." />
           <FeatureGrid items={useCaseCards} />
         </div>
       </Section>
 
-      <Section className="isolate max-w-none overflow-hidden px-0 py-0">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(224,0,131,0.20),transparent_28%),radial-gradient(circle_at_80%_70%,rgba(40,199,232,0.22),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#fff0fa_100%)]" aria-hidden="true" />
+      <Section className="testimonial-gradient-section isolate max-w-none overflow-hidden px-0 py-0">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_20%_20%,rgba(224,0,131,0.12),transparent_28%),radial-gradient(circle_at_80%_70%,rgba(40,199,232,0.14),transparent_30%),linear-gradient(135deg,#ffffff_0%,#f8fdff_48%,#fff7fc_100%)]" aria-hidden="true" />
         <div className="mx-auto max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
-          <SectionHeading title="Chosen by teams moving AI into production" description="The strongest AI systems combine developer control, operational trust, and fast time to value." />
+          <WritingSectionHeading title="Chosen by teams moving AI into production" description="The strongest AI systems combine developer control, operational trust, and fast time to value." />
           <TestimonialSection variant="light" />
         </div>
       </Section>

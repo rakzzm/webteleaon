@@ -23,6 +23,7 @@ const signals = [
   { label: "Escalation ready", value: "Human handoff armed" }
 ];
 const defaultVideoAgentGreeting = "Hello, welcome to Teleaon Enterprise - how may i help you today?";
+const heroHeadline = "AI Voice Agents That Talk, Listen, and Resolve Customer Enquiries in Real Time";
 const videoAgentVoiceInstructions =
   "Voice persona: Teleaon AI enterprise concierge. Sound natural, human, warm, and professional. Malaysian English rhythm with clear pronunciation. Calm, confident, helpful, never robotic. Use conversational pacing and light warmth.";
 
@@ -90,6 +91,7 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
   const [isListening, setIsListening] = useState(false);
   const [liveTranscript, setLiveTranscript] = useState("");
   const [voiceStatus, setVoiceStatus] = useState("Click play to start a live voice conversation");
+  const [visibleHeadline, setVisibleHeadline] = useState("");
   const videoAbortRef = useRef<AbortController | null>(null);
   const voiceAbortRef = useRef<AbortController | null>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -103,6 +105,34 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
   const submittedTranscriptRef = useRef(false);
   const isVoiceConversationRef = useRef(false);
   const startListeningRef = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let interval = 0;
+
+    const startTimer = window.setTimeout(() => {
+      if (prefersReducedMotion) {
+        setVisibleHeadline(heroHeadline);
+        return;
+      }
+
+      setVisibleHeadline("");
+      let index = 0;
+      interval = window.setInterval(() => {
+        index += 1;
+        setVisibleHeadline(heroHeadline.slice(0, index));
+
+        if (index >= heroHeadline.length) {
+          window.clearInterval(interval);
+        }
+      }, 34);
+    }, 180);
+
+    return () => {
+      window.clearTimeout(startTimer);
+      window.clearInterval(interval);
+    };
+  }, []);
 
   const clearListenTimer = useCallback(() => {
     if (listenSilenceTimerRef.current) {
@@ -290,7 +320,7 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
       await streamTeleaonAgent({
         message,
         surface: "video-agent",
-        context: "The answer appears inside the Teleaon Video Agent hero as a real-time customer-facing response. It will also be converted to speech. Use Malaysian English, concise spoken sentences, a warm customer-support tone, and ask one natural follow-up question when useful.",
+        context: "The answer appears inside the Teleaon Voice Agent hero as a real-time customer-facing response. It will also be converted to speech. Use Malaysian English, concise spoken sentences, a warm customer-support tone, and ask one natural follow-up question when useful.",
         signal: controller.signal,
         onDelta: (delta) => {
           responseText += delta;
@@ -458,7 +488,7 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
   });
 
   return (
-    <section className={cn("relative isolate overflow-hidden bg-[#f8fbff] py-14 text-slate-950 lg:min-h-[calc(100vh-8.25rem)]", className)}>
+    <section className={cn("relative isolate overflow-hidden bg-[#f8fbff] pb-12 pt-8 text-slate-950 lg:min-h-[calc(100vh-8.25rem)] lg:pb-12 lg:pt-6", className)}>
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_74%_18%,rgba(30,167,225,0.32),transparent_34%),radial-gradient(circle_at_20%_18%,rgba(224,0,131,0.22),transparent_30%),radial-gradient(circle_at_52%_78%,rgba(125,211,252,0.24),transparent_42%),linear-gradient(135deg,#ffffff_0%,#eefbff_38%,#fff1fa_72%,#ffffff_100%)]" />
       <div
         className="absolute inset-0 opacity-45"
@@ -479,24 +509,25 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
         transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 0.4 }}
       />
 
-      <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-5 sm:px-6 lg:min-h-[calc(100vh-14rem)] lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:px-8 xl:gap-14">
+      <div className="relative mx-auto grid max-w-7xl items-start gap-10 px-5 pb-8 pt-4 sm:px-6 lg:min-h-[calc(100vh-16rem)] lg:grid-cols-[minmax(0,0.86fr)_minmax(0,1.14fr)] lg:px-8 lg:pt-6 xl:gap-14">
         <div className="min-w-0">
-          <div className="mb-6 flex flex-wrap gap-2">
+          <div className="mb-4 flex flex-wrap gap-2">
             {badges.map((badge) => (
               <span key={badge} className="rounded-full border border-slate-900/10 bg-white/70 px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm backdrop-blur-xl">
                 {badge}
               </span>
             ))}
           </div>
-          <h1 className="max-w-2xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.04] xl:text-[3.7rem]">
-            AI Video Agents That <span className="text-cyan">Talk</span>, <span className="text-cyan">Listen</span>, and Resolve Customer Enquiries in Real Time
+          <h1 aria-label={heroHeadline} className="max-w-2xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.25rem] lg:leading-[1.04] xl:text-[3.7rem]">
+            <span aria-hidden="true">{visibleHeadline}</span>
+            <span className="writing-cursor bg-cyan" aria-hidden="true" />
           </h1>
           <p className="mt-5 max-w-2xl text-base leading-8 text-slate-700 sm:text-lg">
-            Deploy lifelike AI avatars that engage customers face-to-face, answer questions, qualify leads, book appointments, and speak back in a natural Malaysian customer service style.
+            Deploy lifelike AI voice agents that engage customers naturally, answer questions, qualify leads, book appointments, and speak back in a natural Malaysian customer service style.
           </p>
           <div className="mt-7 flex flex-col gap-4 sm:flex-row">
             <Button href="/contact-us">Book a Demo</Button>
-            <Button href="/use-case/agent-video-bot#how-it-works" variant="secondary">See How It Works</Button>
+            <Button href="/use-case/agentic-voice-bot#how-it-works" variant="secondary">See How It Works</Button>
           </div>
           <div className="mt-6 grid max-w-xl grid-cols-3 gap-3">
             {[
@@ -531,7 +562,7 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
                   <Volume2 className="h-5 w-5" />
                 </span>
                 <div>
-                  <div className="text-sm font-semibold text-slate-950">Teleaon Video Agent</div>
+                  <div className="text-sm font-semibold text-slate-950">Teleaon Voice Agent</div>
                   <div className="flex items-center gap-2 text-xs text-cyan">
                     <span className={cn("h-2 w-2 rounded-full bg-cyan shadow-[0_0_12px_rgba(40,199,232,0.9)]", (isSpeaking || isListening || isAgentReplying) && "animate-pulse")} />
                     {voiceStatus}
@@ -565,7 +596,7 @@ export function HeroVideoBot({ className }: HeroVideoBotProps) {
               <div className="grid gap-3">
                 <MiniCustomerCard />
                 <div className="rounded-2xl border border-slate-900/10 bg-white/70 p-4 shadow-sm">
-                  <div className="text-xs font-semibold text-cyan">Talk to Teleaon Video Agent</div>
+                  <div className="text-xs font-semibold text-cyan">Talk to Teleaon Voice Agent</div>
                   <textarea
                     value={customerQuestion}
                     onChange={(event) => setCustomerQuestion(event.target.value)}

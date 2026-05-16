@@ -84,7 +84,7 @@ const ContainerScroll = ({ children, className, ...props }: ContainerScrollProps
 
   return (
     <ContainerScrollContext.Provider value={{ scrollYProgress }}>
-      <section className={cn("relative min-h-[540px] w-full", className)} {...props} ref={scrollRef}>
+      <section className={cn("relative min-h-[440px] w-full", className)} {...props} ref={scrollRef}>
         {children}
       </section>
     </ContainerScrollContext.Provider>
@@ -165,20 +165,20 @@ export function AIInfrastructureScrollHero() {
   ];
 
   return (
-    <ContainerScroll className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/70 shadow-[0_40px_120px_rgba(14,116,144,0.16)] backdrop-blur-xl">
+    <ContainerScroll className="relative min-h-[440px] overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/70 shadow-[0_28px_90px_rgba(14,116,144,0.14)] backdrop-blur-xl">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.22),transparent_30%),radial-gradient(circle_at_78%_62%,rgba(59,130,246,0.20),transparent_34%)]" />
       <div className="absolute inset-0 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.06)_1px,transparent_1px)] [background-size:34px_34px]" />
 
-      <ContainerStagger className="relative z-10 h-full min-h-[540px] p-5">
-        <ContainerAnimated animation="top" className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl">
+      <ContainerStagger className="relative z-10 h-full min-h-[440px] p-4">
+        <ContainerAnimated animation="top" className="rounded-3xl border border-slate-200 bg-slate-950 p-4 text-white shadow-2xl">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-xs uppercase tracking-[0.22em] text-cyan">AI Infrastructure Control Plane</div>
-              <div className="mt-2 text-2xl font-semibold">Secure workload fabric</div>
+              <div className="mt-2 text-xl font-semibold">Secure workload fabric</div>
             </div>
             <div className="rounded-full bg-cyan px-3 py-1 text-xs font-semibold text-ink">Healthy</div>
           </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-4">
+          <div className="mt-4 grid gap-3 sm:grid-cols-4">
             {metrics.map(([label, value]) => (
               <div key={label} className="rounded-2xl border border-white/10 bg-white/[0.06] p-3">
                 <div className="text-[10px] uppercase tracking-[0.2em] text-slate-400">{label}</div>
@@ -188,7 +188,7 @@ export function AIInfrastructureScrollHero() {
           </div>
         </ContainerAnimated>
 
-        <div className="relative mt-5 h-[360px]">
+        <div className="relative mt-4 h-[300px]">
           <ContainerInset className="absolute inset-0 rounded-[2rem] border border-slate-800 bg-slate-950 shadow-[0_28px_90px_rgba(2,6,23,0.32)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(40,199,232,0.28),transparent_32%),linear-gradient(135deg,#020617_0%,#071522_54%,#020617_100%)]" />
             <div className="absolute inset-0 opacity-30 [background-image:radial-gradient(circle,rgba(255,255,255,0.45)_1px,transparent_1.5px)] [background-size:18px_18px]" />

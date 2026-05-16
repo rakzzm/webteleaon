@@ -5,9 +5,10 @@ import { BarChart3, Bot, BrainCircuit, CheckCircle2, CloudCog, Cpu, DatabaseZap,
 import { Button } from "@/components/ui/Button";
 import { AIInfrastructureScrollHero } from "@/components/sections/AIInfrastructureScrollHero";
 import { CTASection } from "@/components/sections/CTASection";
-import { AIPlatformLampHero } from "@/components/sections/AIPlatformLampHero";
 import { FAQSection } from "@/components/sections/FAQSection";
 import { GenAIFlowTrailHero } from "@/components/sections/GenAIFlowTrailHero";
+import { ParticleTextEffect } from "@/components/sections/ParticleTextEffect";
+import { SmokeBackground } from "@/components/sections/SmokeBackground";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { productCards } from "@/data/site";
 
@@ -527,27 +528,29 @@ const genAIFaqs = [
 function AISaaSPage() {
   return (
     <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
-      <section className="relative isolate border-b border-slate-200">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_70%_12%,rgba(40,199,232,0.30),transparent_32%),radial-gradient(circle_at_18%_24%,rgba(224,0,131,0.20),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#fff1fa_100%)]" />
-        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+      <section className="relative isolate overflow-hidden border-b border-slate-200 bg-[#f8fbff]">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_12%,rgba(40,199,232,0.30),transparent_32%),radial-gradient(circle_at_18%_24%,rgba(224,0,131,0.20),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#fff1fa_100%)]" />
+        <SmokeBackground smokeColor="#28c7e8" className="absolute inset-0 z-[1] h-full w-full opacity-95 mix-blend-multiply" />
+        <div className="product-hero-motion product-hero-motion--saas absolute inset-0 z-[2]" />
+        <div className="absolute inset-0 z-[3] opacity-[0.24] [background-image:linear-gradient(rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-16">
           <div>
-            <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
+            <div className="mb-5 inline-flex rounded-full border border-cyan/45 bg-slate-950/80 px-4 py-2 text-sm font-semibold text-white shadow-sm backdrop-blur-xl">
               AI SaaS for business teams
             </div>
-            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.6rem] lg:leading-[0.98]">
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.7rem] lg:leading-[1.02]">
               Ready-to-use AI applications for enterprise teams
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-650">
               Launch secure AI apps that automate workflows, answer customer questions, qualify leads, summarize operations, and help teams get work done across every business function.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact-us">Book a Demo</Button>
               <Button href="#capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
                 Explore Capabilities
               </Button>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               {outcomes.map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
                   <div className="text-2xl font-semibold text-slate-950">{value}</div>
@@ -701,24 +704,24 @@ function AIInfrastructurePage() {
       <section className="relative isolate border-b border-slate-200">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_74%_12%,rgba(40,199,232,0.30),transparent_32%),radial-gradient(circle_at_16%_28%,rgba(59,130,246,0.18),transparent_30%),linear-gradient(135deg,#ffffff_0%,#eefbff_48%,#f3f7ff_100%)]" />
         <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+        <div className="mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-16">
           <div>
             <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
               AI Infrastructure for production workloads
             </div>
-            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.55rem] lg:leading-[0.98]">
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.02]">
               Secure infrastructure for scalable AI workloads
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-650">
               Run models, embeddings, vector search, agent services, deployment pipelines, and observability controls on a secure foundation designed for enterprise AI operations.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact-us">Book Infrastructure Review</Button>
               <Button href="#infra-capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
                 Explore Infrastructure
               </Button>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               {infrastructureOutcomes.map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
                   <div className="text-2xl font-semibold text-slate-950">{value}</div>
@@ -869,27 +872,28 @@ function AIInfrastructurePage() {
 function AIPlatformPage() {
   return (
     <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
-      <section className="relative isolate border-b border-slate-200">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_74%_12%,rgba(40,199,232,0.28),transparent_32%),radial-gradient(circle_at_16%_28%,rgba(224,0,131,0.18),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#f5f0ff_100%)]" />
-        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+      <section className="relative isolate overflow-hidden border-b border-slate-200 bg-[#f8fbff]">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_74%_12%,rgba(40,199,232,0.34),transparent_32%),radial-gradient(circle_at_16%_28%,rgba(224,0,131,0.24),transparent_30%),linear-gradient(135deg,#ffffff_0%,#effcff_48%,#f5f0ff_100%)]" />
+        <div className="product-hero-motion product-hero-motion--platform absolute inset-0 z-[1]" />
+        <div className="absolute inset-0 z-[3] opacity-[0.24] [background-image:linear-gradient(rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-16">
           <div>
-            <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
+            <div className="mb-5 inline-flex rounded-full border border-cyan/45 bg-slate-950/80 px-4 py-2 text-sm font-semibold text-white shadow-sm backdrop-blur-xl">
               AI Platform control plane
             </div>
-            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.55rem] lg:leading-[0.98]">
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.02]">
               Build, manage, and govern AI agents at enterprise scale
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-650">
               Design agentic systems with model orchestration, data connectors, memory, tools, guardrails, workflow automation, monitoring, and governance in one production-ready platform.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact-us">Book Platform Demo</Button>
               <Button href="#platform-capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
                 Explore Platform
               </Button>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               {platformOutcomes.map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
                   <div className="text-2xl font-semibold text-slate-950">{value}</div>
@@ -898,7 +902,25 @@ function AIPlatformPage() {
               ))}
             </div>
           </div>
-          <AIPlatformLampHero />
+          <div className="relative overflow-hidden rounded-[2rem] border border-slate-950/10 bg-slate-950 shadow-[0_40px_120px_rgba(14,116,144,0.24)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(40,199,232,0.22),transparent_28%),radial-gradient(circle_at_18%_78%,rgba(224,0,131,0.22),transparent_30%)]" />
+            <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:36px_36px]" />
+            <div className="relative z-10 h-[420px] p-4">
+              <ParticleTextEffect words={["AGENTS", "ORCHESTRATE", "GOVERN", "DEPLOY", "MONITOR"]} className="h-full w-full opacity-95" />
+            </div>
+            <div className="absolute inset-x-6 bottom-6 z-20 grid gap-3 sm:grid-cols-3">
+              {[
+                ["Agent builder", "Design"],
+                ["Model router", "Orchestrate"],
+                ["Governance", "Control"]
+              ].map(([title, label]) => (
+                <div key={title} className="rounded-2xl border border-white/10 bg-white/[0.08] p-4 text-white shadow-2xl backdrop-blur-xl">
+                  <div className="text-[10px] uppercase tracking-[0.22em] text-cyan">{label}</div>
+                  <div className="mt-2 text-sm font-semibold">{title}</div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -1040,27 +1062,28 @@ function AIPlatformPage() {
 function GenAIPage() {
   return (
     <main className="overflow-hidden bg-[#f8fbff] text-slate-950">
-      <section className="relative isolate border-b border-slate-200">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_72%_14%,rgba(224,0,131,0.22),transparent_30%),radial-gradient(circle_at_18%_28%,rgba(40,199,232,0.24),transparent_32%),linear-gradient(135deg,#ffffff_0%,#effcff_45%,#fff1fb_100%)]" />
-        <div className="absolute inset-0 -z-10 opacity-45 [background-image:linear-gradient(rgba(15,23,42,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.05)_1px,transparent_1px)] [background-size:40px_40px]" />
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-24">
+      <section className="relative isolate overflow-hidden border-b border-slate-200 bg-[#f8fbff]">
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_70%_10%,rgba(224,0,131,0.18),transparent_32%),radial-gradient(circle_at_14%_30%,rgba(40,199,232,0.24),transparent_34%),linear-gradient(135deg,#ffffff_0%,#effcff_45%,#fff1fb_100%)]" />
+        <div className="product-hero-motion product-hero-motion--gen absolute inset-0 z-[1]" />
+        <div className="absolute inset-0 z-[2] opacity-[0.24] [background-image:linear-gradient(rgba(15,23,42,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.045)_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 px-5 py-12 sm:px-6 lg:grid-cols-[0.92fr_1.08fr] lg:px-8 lg:py-16">
           <div>
-            <div className="mb-5 inline-flex rounded-full border border-cyan/25 bg-white/70 px-4 py-2 text-sm font-semibold text-cyan shadow-sm backdrop-blur-xl">
+            <div className="mb-5 inline-flex rounded-full border border-cyan/45 bg-slate-950/80 px-4 py-2 text-sm font-semibold text-white shadow-sm backdrop-blur-xl">
               Enterprise generative AI
             </div>
-            <h1 className="max-w-3xl text-balance text-5xl font-semibold tracking-normal text-slate-950 sm:text-6xl lg:text-[4.55rem] lg:leading-[0.98]">
+            <h1 className="max-w-3xl text-balance text-4xl font-semibold tracking-normal text-slate-950 sm:text-5xl lg:text-[3.65rem] lg:leading-[1.02]">
               Governed Gen AI for knowledge, documents, and copilots
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-650">
+            <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-650">
               Build secure generative AI systems that search enterprise knowledge, understand documents, generate trusted content, and power role-specific copilots with citations, controls, and measurable outcomes.
             </p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Button href="/contact-us">Book Gen AI Workshop</Button>
               <Button href="#gen-ai-capabilities" variant="secondary" className="border-slate-300 text-slate-950 hover:border-cyan/50 hover:bg-white/80">
                 Explore Gen AI
               </Button>
             </div>
-            <div className="mt-8 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
+            <div className="mt-6 grid max-w-2xl grid-cols-2 gap-3 sm:grid-cols-4">
               {genAIOutcomes.map(([value, label]) => (
                 <div key={label} className="rounded-2xl border border-slate-200 bg-white/75 p-4 shadow-sm backdrop-blur-xl">
                   <div className="text-2xl font-semibold text-slate-950">{value}</div>
@@ -1210,18 +1233,18 @@ function GenAIPage() {
 
 function AISaaSVisual() {
   return (
-    <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-white/70 p-5 shadow-[0_40px_120px_rgba(14,116,144,0.16)] backdrop-blur-xl">
+    <div className="relative min-h-[440px] overflow-hidden rounded-[1.5rem] border border-white/70 bg-white/70 p-4 shadow-[0_28px_90px_rgba(14,116,144,0.14)] backdrop-blur-xl">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(224,0,131,0.16),transparent_30%),radial-gradient(circle_at_78%_62%,rgba(40,199,232,0.20),transparent_34%)]" />
-      <div className="relative grid gap-4">
-        <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-2xl">
+      <div className="relative grid gap-3">
+        <div className="rounded-3xl border border-slate-200 bg-slate-950 p-4 text-white shadow-2xl">
           <div className="flex items-center justify-between">
             <div>
               <div className="text-xs uppercase tracking-[0.22em] text-cyan">AI SaaS Command Center</div>
-              <div className="mt-2 text-2xl font-semibold">Customer workflow live</div>
+              <div className="mt-2 text-xl font-semibold">Customer workflow live</div>
             </div>
             <div className="rounded-full bg-cyan px-3 py-1 text-xs font-semibold text-ink">Active</div>
           </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
             {[
               ["Intent", "Demo request"],
               ["Sentiment", "Positive"],
@@ -1234,13 +1257,13 @@ function AISaaSVisual() {
             ))}
           </div>
         </div>
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <VisualTile icon={<Bot />} title="AI Agent" body="Understands the request and selects the right workflow." />
           <VisualTile icon={<DatabaseZap />} title="CRM Update" body="Creates lead, updates score, and logs conversation summary." />
           <VisualTile icon={<PlugZap />} title="Tool Actions" body="Books calendar slot and sends confirmation to the customer." />
           <VisualTile icon={<Gauge />} title="Analytics" body="Tracks conversion, handling time, and automation outcome." />
         </div>
-        <div className="rounded-3xl border border-slate-200 bg-white/85 p-5 shadow-sm">
+        <div className="rounded-3xl border border-slate-200 bg-white/85 p-4 shadow-sm">
           <div className="flex items-center gap-3">
             <BrainCircuit className="h-6 w-6 text-cyan" />
             <div className="font-semibold text-slate-950">Governed response</div>
@@ -1256,21 +1279,21 @@ function GenAIVisual() {
   const contentSignals = ["RAG", "Search", "Docs", "Citations", "Copilots", "LLM"];
 
   return (
-    <div className="relative min-h-[540px] overflow-hidden rounded-[2rem] border border-white/70 bg-slate-950 p-5 shadow-[0_40px_120px_rgba(14,116,144,0.18)]">
+    <div className="relative min-h-[440px] overflow-hidden rounded-[1.5rem] border border-white/70 bg-slate-950 p-4 shadow-[0_28px_90px_rgba(14,116,144,0.16)]">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_18%,rgba(40,199,232,0.18),transparent_30%),radial-gradient(circle_at_78%_62%,rgba(224,0,131,0.22),transparent_34%)]" />
       <GenAIFlowTrailHero />
       <div className="absolute inset-0 opacity-35 [background-image:linear-gradient(rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.08)_1px,transparent_1px)] [background-size:38px_38px]" />
 
-      <div className="relative grid gap-4">
-        <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-5 text-white shadow-2xl backdrop-blur-xl">
+      <div className="relative grid gap-3">
+        <div className="rounded-3xl border border-white/10 bg-white/[0.08] p-4 text-white shadow-2xl backdrop-blur-xl">
           <div className="flex items-center justify-between gap-4">
             <div>
               <div className="text-xs uppercase tracking-[0.22em] text-cyan">Gen AI Intelligence Layer</div>
-              <div className="mt-2 text-2xl font-semibold">Grounded answer generated</div>
+              <div className="mt-2 text-xl font-semibold">Grounded answer generated</div>
             </div>
             <div className="rounded-full bg-cyan px-3 py-1 text-xs font-semibold text-ink">Cited</div>
           </div>
-          <div className="mt-5 grid gap-3 sm:grid-cols-3">
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
             {[
               ["Sources", "14 retrieved"],
               ["Confidence", "94%"],
@@ -1284,14 +1307,14 @@ function GenAIVisual() {
           </div>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-3 sm:grid-cols-2">
           <VisualTile icon={<FileSearch />} title="Retrieval" body="Finds source-backed context across documents, wikis, tickets, and data systems." />
           <VisualTile icon={<BrainCircuit />} title="Generation" body="Creates concise answers, summaries, drafts, and recommendations with policy controls." />
           <VisualTile icon={<ShieldCheck />} title="Governance" body="Applies permissions, citations, redaction, evaluation, and review gates." />
           <VisualTile icon={<Workflow />} title="Workflow" body="Turns generated output into approvals, CRM updates, tickets, briefs, and next actions." />
         </div>
 
-        <div className="rounded-3xl border border-white/10 bg-white/90 p-5 shadow-sm">
+        <div className="rounded-3xl border border-white/10 bg-white/90 p-4 shadow-sm">
           <div className="flex flex-wrap gap-2">
             {contentSignals.map((signal) => (
               <span key={signal} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-xs font-semibold text-slate-700 shadow-sm">
