@@ -24,6 +24,7 @@ export async function sendSignupVerificationEmail({
     host,
     port,
     secure: port === 465,
+    ignoreTLS: host === "127.0.0.1" || host === "localhost",
     ...(user && pass ? { auth: { user, pass } } : {})
   });
 
