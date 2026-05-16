@@ -51,7 +51,7 @@ export function FloatingVideoAgent() {
   const [isMinimized, setIsMinimized] = useState(false);
   const [input, setInput] = useState("Can Teleaon help my team automate customer enquiries?");
   const [response, setResponse] = useState("Hi, I am your Teleaon virtual assistant. I can help explain AI agents, check customer enquiries, qualify leads, and guide you to the right solution. No worries, ask me anything lah.");
-  const [status, setStatus] = useState("HeyGen avatar ready");
+  const [status, setStatus] = useState("Ready to help");
   const [isReplying, setIsReplying] = useState(false);
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -207,7 +207,7 @@ export function FloatingVideoAgent() {
       .then((payload: { url?: string } | null) => {
         if (isMounted && payload?.url) {
           setLiveAvatarUrl(payload.url);
-          setStatus("Realtime avatar ready");
+          setStatus("Realtime avatar online");
         }
       })
       .catch(() => undefined);
