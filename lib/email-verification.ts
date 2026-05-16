@@ -11,9 +11,9 @@ export async function sendSignupVerificationEmail({
   const port = Number(process.env.SMTP_PORT || 587);
   const user = process.env.SMTP_USER;
   const pass = process.env.SMTP_PASSWORD;
-  const from = process.env.SMTP_FROM || user;
+  const from = process.env.SMTP_FROM || user || "Teleaon AI <info@teleaon.ai>";
 
-  if (!host || !user || !pass || !from) {
+  if (!host || !from) {
     return {
       sent: false,
       message: "Verification code was created, but SMTP email delivery is not configured yet."
@@ -24,7 +24,7 @@ export async function sendSignupVerificationEmail({
     host,
     port,
     secure: port === 465,
-    auth: { user, pass }
+    ...(user && pass ? { auth: { user, pass } } : {})
   });
 
   await transporter.sendMail({

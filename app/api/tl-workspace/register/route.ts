@@ -1,0 +1,30 @@
+import { NextResponse } from "next/server";
+import { createWorkspaceSessionToken, createWorkspaceUser, sessionCookieName } from "@/lib/tl-workspace-auth";
+
+export async function POST(request: Request) {
+  try {
+    const body = (await request.json()) as { email?: string; password?: string; name?: string };
+    const session = await createWorkspaceUser({
+      email: body.email || "",
+      password: body.password || "",
+      name: body.name
+    });
+    const token = createWorkspaceSessionToken(session);
+    const response = NextResponse.json({ ok: true, user: session, redirectTo: "/crm/" });
+
+    response.cookies.set(sessionCookieName, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 12
+    });
+
+    return response;
+  } catch (error) {
+    return NextResponse.json(
+      { ok: false, message: error instanceof Error ? error.message : "Could not create employee account." },
+      { status: 400 }
+    );
+  }
+}

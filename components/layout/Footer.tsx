@@ -12,7 +12,8 @@ export function Footer() {
     { title: "Pricing", href: "/pricing" },
     { title: "Contact Sales", href: "/contact-us" },
     { title: "Resources", href: "/resources" },
-    { title: "Library", href: "/library" }
+    { title: "Library", href: "/library" },
+    { title: "TL WorkSpace", href: "/tl-workspace" }
   ];
 
   return (
