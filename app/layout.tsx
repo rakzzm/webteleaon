@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingVideoAgent } from "@/components/sections/FloatingVideoAgent";
 import "./globals.css";
 
 const geist = Geist({
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main>{children}</main>
         <Footer />
+        <FloatingVideoAgent />
       </body>
     </html>
   );
