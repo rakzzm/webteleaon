@@ -158,7 +158,7 @@ function HeaderInner() {
           <Link href="/contact-us" onClick={closeMenus} className="rounded-md border border-slate-300 bg-white/70 px-4 py-3 text-sm font-semibold text-slate-900 shadow-sm transition hover:border-cyan/50">
             Contact sales
           </Link>
-          <Link href="/pricing" onClick={closeMenus} className="rounded-md bg-cyan px-4 py-3 text-sm font-semibold text-ink shadow-[0_14px_30px_rgba(40,199,232,0.28)] transition hover:bg-slate-950 hover:text-white">
+          <Link href="/start-building" onClick={closeMenus} className="rounded-md bg-cyan px-4 py-3 text-sm font-semibold text-ink shadow-[0_14px_30px_rgba(40,199,232,0.28)] transition hover:bg-slate-950 hover:text-white">
             Start building
           </Link>
         </div>
@@ -195,6 +195,14 @@ function HeaderInner() {
                 ) : null}
               </div>
             ))}
+            <div className="grid gap-3 border-t border-slate-200 pt-4">
+              <Link href="/contact-us" onClick={() => setOpen(false)} className="inline-flex min-h-12 items-center justify-center rounded-xl border border-slate-300 bg-white/80 px-4 text-sm font-semibold text-slate-900 shadow-sm backdrop-blur-md">
+                Contact sales
+              </Link>
+              <Link href="/start-building" onClick={() => setOpen(false)} className="inline-flex min-h-12 items-center justify-center rounded-xl bg-cyan px-4 text-sm font-semibold text-ink shadow-[0_14px_30px_rgba(40,199,232,0.28)]">
+                Start building
+              </Link>
+            </div>
           </div>
         </div>
       ) : null}

@@ -28,7 +28,7 @@ export default function PricingPage() {
               Choose the Malaysia Ringgit plan that matches your AI maturity, deployment requirements, usage volume, and governance needs.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <Link href="/pricing#plans" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-slate-950 shadow-[0_18px_60px_rgba(255,255,255,0.18)] transition hover:bg-cyan sm:w-auto">
+              <Link href="/start-building" className="inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-slate-950 shadow-[0_18px_60px_rgba(255,255,255,0.18)] transition hover:bg-cyan sm:w-auto">
                 Start building
               </Link>
               <Link href="/contact-us" className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-6 text-sm font-semibold text-white backdrop-blur-md transition hover:border-cyan/50 hover:bg-white/15 sm:w-auto">
