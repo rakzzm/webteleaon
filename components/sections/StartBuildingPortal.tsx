@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Link from "next/link";
 import { getProviders, getSession, signIn, signOut } from "next-auth/react";
 import { ArrowRight, Bot, Building2, CheckCircle2, HeartPulse, LockKeyhole, Mail, Megaphone, MessageSquareText, Mic2, PanelRightOpen, ShieldCheck, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -14,12 +13,13 @@ const platforms = [
   {
     name: "Contact Center Platform",
     href: platformRedirects.contactCenter,
+    launchUrls: [platformRedirects.contactCenterAdmin, platformRedirects.contactCenterTenant],
     icon: PanelRightOpen,
     accent: "bg-cyan",
     rows: [
-      ["Channels", "Voice, chat, email, WhatsApp"],
-      ["Workflows", "Routing, QA, summaries, CRM notes"],
-      ["Best for", "Support teams and service desks"]
+      ["Super admin", "admin.teleaon.ai"],
+      ["Tenant portal", "tenant1.teleaon.ai"],
+      ["Opens", "Both portals in new tabs"]
     ]
   },
   {
@@ -228,6 +228,17 @@ export function StartBuildingPortal() {
     }
   };
 
+  const openPlatform = (platform: (typeof platforms)[number]) => {
+    if ("launchUrls" in platform && platform.launchUrls?.length) {
+      platform.launchUrls.forEach((url) => {
+        window.open(url, "_blank", "noopener,noreferrer");
+      });
+      return;
+    }
+
+    window.open(platform.href, "_blank", "noopener,noreferrer");
+  };
+
   if (isLoggedIn) {
     return (
       <section className="relative min-h-screen overflow-hidden bg-[#f7fbff] px-5 py-24 text-slate-950 sm:px-6 lg:px-8">
@@ -263,7 +274,19 @@ export function StartBuildingPortal() {
               const Icon = platform.icon;
 
               return (
-                <article key={platform.name} className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_22px_70px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:border-cyan/40">
+                <article
+                  key={platform.name}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => openPlatform(platform)}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openPlatform(platform);
+                    }
+                  }}
+                  className="group cursor-pointer overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_22px_70px_rgba(15,23,42,0.08)] transition hover:-translate-y-1 hover:border-cyan/40 focus:outline-none focus:ring-2 focus:ring-cyan/60"
+                >
                   <div className="flex items-center justify-between gap-4 border-b border-slate-100 p-5">
                     <div className="flex items-center gap-3">
                       <span className={cn("grid h-11 w-11 place-items-center rounded-xl text-slate-950", platform.accent)}>
@@ -271,9 +294,9 @@ export function StartBuildingPortal() {
                       </span>
                       <h2 className="text-xl font-semibold text-slate-950">{platform.name}</h2>
                     </div>
-                    <Link href={platform.href} className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-slate-200 text-slate-600 transition group-hover:border-cyan group-hover:bg-cyan group-hover:text-slate-950" aria-label={`Access ${platform.name}`}>
+                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-slate-200 text-slate-600 transition group-hover:border-cyan group-hover:bg-cyan group-hover:text-slate-950" aria-hidden="true">
                       <ArrowRight className="h-4 w-4" />
-                    </Link>
+                    </span>
                   </div>
                   <table className="w-full border-collapse text-left text-sm">
                     <tbody>
