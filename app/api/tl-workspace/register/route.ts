@@ -10,7 +10,7 @@ export async function POST(request: Request) {
       name: body.name
     });
     const token = createWorkspaceSessionToken(session);
-    const response = NextResponse.json({ ok: true, user: session, redirectTo: "/crm/" });
+    const response = NextResponse.json({ ok: true, user: session, redirectTo: "/login?redirect-to=/crm" });
 
     response.cookies.set(sessionCookieName, token, {
       httpOnly: true,

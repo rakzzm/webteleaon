@@ -57,7 +57,7 @@ export function TLWorkspacePortal() {
             TL WorkSpace for Teleaon teams
           </h1>
           <p className="mt-6 max-w-2xl text-lg font-medium leading-8 text-slate-300">
-            Sign in to the internal CRM workspace for pipeline, accounts, contacts, tasks, and customer follow-up operations. Access is limited to Teleaon employee email addresses.
+            Sign in to the internal Frappe CRM workspace for pipeline, accounts, contacts, tasks, and customer follow-up operations. Access is limited to Teleaon employee email addresses.
           </p>
           <div className="mt-8 grid max-w-2xl gap-3 sm:grid-cols-3">
             {["CRM records", "Employee access", "Protected app"].map((item) => (

@@ -6,7 +6,7 @@ export async function POST(request: Request) {
     const body = (await request.json()) as { email?: string; password?: string };
     const session = await authenticateWorkspaceUser(body.email || "", body.password || "");
     const token = createWorkspaceSessionToken(session);
-    const response = NextResponse.json({ ok: true, user: session, redirectTo: "/crm/" });
+    const response = NextResponse.json({ ok: true, user: session, redirectTo: "/login?redirect-to=/crm" });
 
     response.cookies.set(sessionCookieName, token, {
       httpOnly: true,
