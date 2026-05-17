@@ -1,7 +1,7 @@
 export const platformRedirects = {
   contactCenter: process.env.NEXT_PUBLIC_CONTACT_CENTER_PLATFORM_URL || "/solutions/telecommunication",
-  contactCenterAdmin: process.env.NEXT_PUBLIC_CONTACT_CENTER_ADMIN_URL || "https://admin.teleaon.ai",
-  contactCenterTenant: process.env.NEXT_PUBLIC_CONTACT_CENTER_TENANT_URL || "https://tenant1.teleaon.ai",
+  contactCenterAdmin: process.env.NEXT_PUBLIC_CONTACT_CENTER_ADMIN_URL || "https://teleaon.ai/demo/service-provider/login",
+  contactCenterTenant: process.env.NEXT_PUBLIC_CONTACT_CENTER_TENANT_URL || "https://teleaon.ai/demo/tenant/login",
   healthcare: process.env.NEXT_PUBLIC_HEALTHCARE_PLATFORM_URL || "/solutions/large-enterprise",
   genAi: process.env.NEXT_PUBLIC_GEN_AI_PLATFORM_URL || "/products/gen-ai",
   agenticVoice: process.env.NEXT_PUBLIC_AGENTIC_VOICE_PLATFORM_URL || "/use-case/agentic-voice-bot",

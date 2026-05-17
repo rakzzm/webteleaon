@@ -17,8 +17,8 @@ const platforms = [
     icon: PanelRightOpen,
     accent: "bg-cyan",
     rows: [
-      ["Super admin", "admin.teleaon.ai"],
-      ["Tenant portal", "tenant1.teleaon.ai"],
+      ["Service provider", "Demo super admin portal"],
+      ["Tenant workspace", "Demo tenant portal"],
       ["Opens", "Both portals in new tabs"]
     ]
   },
